@@ -41,17 +41,39 @@ function updatepet(stage) {
 
   // Show the transition image
   pet.src = transitions[stage];
+  if (stage === 1) {
+    petElement.innerHTML = '<div id="petstage">Wow, something happened!</div>';
+  }
+  if (stage === 2) {
+    petElement.innerHTML = '<div id="petstage">Hm? Something is happening?</div>';
+  }
+  if (stage === 3) {
+    petElement.innerHTML = '<div id="petstage">Hm? Something is happening again?</div>';
+  }
+  if (stage === 4) {
+    petElement.innerHTML = '<div id="petstage">Hm? Something is happening AGAIN?</div>';
+  }
 
   // Wait for 1 second, then switch to the new stage image
   setTimeout(() => {
     pet.src = stages[stage];
     isTransitioning = false;
-  }, 1000); // 1-second delay for transition
+    if (stage === 1) {
+      petElement.innerHTML = '<div id="petstage">Congrats! Your dragen egg hatched into a baby! uwu </div>';
+    }
+    if (stage === 2) {
+      petElement.innerHTML = '<div id="petstage">Cmon, do something to grow your dragen!</div>';
+    }
+    if (stage === 3) {
+      petElement.innerHTML = '<div id="petstage">Keep it up! Your dragen is adulting with you :)</div>';
+    }
+    if (stage === 4) {
+      petElement.innerHTML = '<div id="petstage">Congrats! Your dragen is enjoying retirement now!</div>';
+    }
+    
+  }, 1500); // 1.5-second delay for transition
 
-  if (pet.src = stages[1]) {
-    petElement.innerHTML = '<div id="petstage">Egg</div>';
-  }
-  else {
-    alert('not working');
-  }
+
 }
+
+
