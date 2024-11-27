@@ -12,6 +12,7 @@
         <!-- Welcome Screen -->
         <div id="welcome-container" class="fullscreen">
             <header>
+                <img src="images/welcome-illustration.svg" alt="Welcome Illustration" class="illustration">
                 <h1><i class="fas fa-utensils"></i> Lunch Roulette</h1>
                 <p>Can't decide on lunch? Let us help you!</p>
                 <button class="btn" id="start-button">Start</button>
@@ -20,16 +21,26 @@
 
         <!-- Question Container -->
         <div id="question-container" class="hidden fullscreen">
+            <h2><i class="fas fa-question-circle"></i> Choose Your Preferences</h2>
             <!-- Questions will be dynamically inserted here -->
+            <div id="question-content"></div>
         </div>
 
         <!-- Result Container -->
         <div id="result-container" class="hidden fullscreen">
+            <img src="images/result-illustration.svg" alt="Result Illustration" class="illustration">
             <h2><i class="fas fa-check-circle"></i> Your Lunch Spot:</h2>
-            <p id="spot-name">Random Lunch Spot</p>
+            <p id="spot-name" class="highlight-text">Random Lunch Spot</p>
             <h3>Cuisine of the Day:</h3>
-            <p id="cuisine-type">-</p>
+            <p id="cuisine-type" class="highlight-text">-</p>
             <button class="btn" onclick="restart()">Start Over</button>
+        </div>
+
+        <!-- Suggestions -->
+        <div id="suggestion-container" class="hidden fullscreen">
+            <h2><i class="fas fa-utensils"></i> Recommendations</h2>
+            <div id="recipe-suggestions" class="suggestions-grid"></div>
+            <div id="restaurant-suggestions" class="suggestions-grid"></div>
         </div>
     </div>
     <script src="script.js"></script>

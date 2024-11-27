@@ -18,88 +18,51 @@ let questionHistory = [];
 const questions = [
     {
         id: "step-1",
-        question: "Is this for an individual or a team?",
+        question: "Dine in or eat out?",
         options: [
-            { text: "Individual", next: "step-3", value: "individual" },
-            { text: "Team", next: "step-2", value: "team" },
+            { text: "Dine In", next: "step-6", value: "dine-in" },
+            { text: "Eat Out", next: "step-2", value: "eat-out" },
         ],
     },
     {
         id: "step-2",
-        question: "What is the purpose of the team lunch?",
+        question: "How much time do you have?",
         options: [
-            { text: "Informal Work Discussion", next: "step-3", value: "informal" },
-            { text: "Team Cohesiveness", next: "step-3", value: "cohesiveness" },
-            { text: "Networking", next: "step-3", value: "networking" },
-            { text: "Celebrations", next: "step-3", value: "celebrations" },
-            { text: "Problem Solving", next: "step-3", value: "problem-solving" },
-            { text: "Onboarding New Members", next: "step-3", value: "onboarding" },
+            { text: "30 minutes", next: "step-3", value: "30-minutes" },
+            { text: "1 hour", next: "step-3", value: "1-hour" },
+            { text: "1.5 hours", next: "step-3", value: "1.5-hours" },
+            { text: "2 hours or more", next: "step-3", value: "2-hours" },
         ],
     },
     {
         id: "step-3",
-        question: "Dine in or eat out?",
+        question: "What is your mode of transport?",
         options: [
-            { text: "Dine In", next: "step-9", value: "dine-in" },
-            { text: "Eat Out", next: "step-4", value: "eat-out" },
+            { text: "Walking", next: "step-4", value: "walking" },
+            { text: "Public Transport", next: "step-4", value: "public-transport" },
+            { text: "Driving", next: "step-4", value: "driving" },
         ],
     },
     {
         id: "step-4",
-        question: "How much time do you have?",
+        question: "Maximum distance willing to travel (in km)?",
         options: [
-            { text: "30 minutes", next: "step-5", value: "30-minutes" },
-            { text: "1 hour", next: "step-5", value: "1-hour" },
-            { text: "1.5 hours", next: "step-5", value: "1.5-hours" },
-            { text: "2 hours or more", next: "step-5", value: "2-hours" },
+            { text: "<2", next: "step-5", value: "<2" },
+            { text: "2-5", next: "step-5", value: "2-5" },
+            { text: ">5", next: "step-5", value: ">5" },
         ],
+
+        next: "step-5",
     },
     {
         id: "step-5",
-        question: "What is your mode of transport?",
-        options: [
-            { text: "Walking", next: "step-6", value: "walking" },
-            { text: "Public Transport", next: "step-6", value: "public-transport" },
-            { text: "Driving", next: "step-6", value: "driving" },
-        ],
-    },
-    {
-        id: "step-6",
-        question: "Maximum distance willing to travel (in km)?",
-        input: true,
-        next: "step-7",
-    },
-    {
-        id: "step-7",
-        question: "Preferred Cuisine?",
-        options: [
-            { text: "Singaporean", next: "step-8", value: "singaporean" },
-            { text: "Chinese", next: "step-8", value: "chinese" },
-            { text: "Indian", next: "step-8", value: "indian" },
-            { text: "Malay", next: "step-8", value: "malay" },
-            { text: "Japanese", next: "step-8", value: "japanese" },
-            { text: "Korean", next: "step-8", value: "korean" },
-            { text: "Western", next: "step-8", value: "western" },
-            { text: "Thai", next: "step-8", value: "thai" },
-            { text: "Healthy", next: "step-8", value: "healthy" },
-            { text: "Vegetarian/Vegan", next: "step-8", value: "vegetarian-vegan" },
-        ],
-    },
-    {
-        id: "step-8",
         question: "What are you feeling?",
         options: [
             {
                 text: "Illuminion's food guide",
-                description: "Choose from popular nearby options known to your colleagues.",
+                description: "Popular food options amongst your colleagues.",
                 next: "result",
                 value: "Illuminion's",
-            },
-            {
-                text: "Iconic",
-                description: "Pick a dish that is a must-try in your selected cuisine.",
-                next: "result",
-                value: "Iconic",
             },
             {
                 text: "Adventurous..?",
@@ -110,44 +73,22 @@ const questions = [
         ],
     },
     {
-        id: "step-9",
+        id: "step-6",
         question: "Food delivery or meal prep?",
         options: [
-            { text: "Food delivery", next: "step-10", value: "Food-delivery" },
-            { text: "Meal prep", next: "step-12", value: "Meal-prep" },
+            { text: "Food delivery", next: "step-7", value: "Food-delivery" },
+            { text: "Meal prep", next: "step-8", value: "Meal-prep" },
         ],
     },
     {
-        id: "step-10",
-        question: "Preferred Cuisine?",
-        options: [
-            { text: "Singaporean", next: "step-11", value: "singaporean" },
-            { text: "Chinese", next: "step-11", value: "chinese" },
-            { text: "Indian", next: "step-11", value: "indian" },
-            { text: "Malay", next: "step-11", value: "malay" },
-            { text: "Japanese", next: "step-11", value: "japanese" },
-            { text: "Korean", next: "step-11", value: "korean" },
-            { text: "Western", next: "step-11", value: "western" },
-            { text: "Thai", next: "step-11", value: "thai" },
-            { text: "Healthy", next: "step-11", value: "healthy" },
-            { text: "Vegetarian/Vegan", next: "step-11", value: "vegetarian-vegan" },
-        ],
-    },
-    {
-        id: "step-11",
+        id: "step-7",
         question: "What are you feeling?",
         options: [
             {
                 text: "Illuminion's food guide",
-                description: "Choose from popular options known to your colleagues.",
+                description: "Popular food options amongst your colleagues.",
                 next: "result",
                 value: "Illuminion's",
-            },
-            {
-                text: "Iconic",
-                description: "Pick a dish that is a must-try in your selected cuisine.",
-                next: "result",
-                value: "Iconic",
             },
             {
                 text: "Adventurous..?",
@@ -158,36 +99,36 @@ const questions = [
         ],
     }, 
     {
-        id: "step-12",
+        id: "step-8",
         question: "Meal prep ideas",
         options: [
             {
-                text: "Simple",
-                description: "Choose from popular options known to your colleagues.",
-                next: "result",
+                text: "Simple & Quick",
+                description: "Ideal for beginners or busy people!",
+                next: "googlesimple",
                 value: "Simple",
             },
-           
             {
-                text: "Healthy",
+                text: "Healthy & Nutritious",
                 description: "Healthy and delicious recipes to keep you fueled!",
-                next: "result",
+                next: "googlehealthy",
                 value: "Healthy",
             },
             {
-                text: "Budget",
-                description: "Try something completely random and explore!",
-                next: "result",
+                text: "Budget-Friendly",
+                description: "Inexpensive and cost-effective meals.",
+                next: "googlebudget",
                 value: "Budget",
             },
             {
-                text: "Illuminion's all time favourite",
-                description: "Pick a dish that is a must-try in your selected cuisine.",
-                next: "result",
-                value: "Illuminion's",
+                text: "Freezer Friendly",
+                description: "No time on weekdays? Fret not! Meals that can be prepared in bulk, frozen and reheated.",
+                next: "googlefreezer",
+                value: "Freezer",
             },
         ]
-    }            
+    }    
+     
 ];
 
 // Start the app
@@ -274,11 +215,49 @@ function handleAnswer(questionId, answer, nextStep) {
 
     if (nextStep === "result") {
         showResult();
-    } else {
+    } 
+    
+    
+    else if (nextStep == "googlesimple") {
+        showGooglesimple();
+    } 
+    else if (nextStep == "googlehealthy") {
+        showGooglehealthy();
+    } 
+    else if (nextStep == "googlebudget") {
+        showGooglebudget();
+    } 
+    else if (nextStep == "googlefreezer") {
+        showGooglefreezer();
+    } 
+  
+    else {
+        
+    } {
         const nextQuestion = questions.find((q) => q.id === nextStep);
         showQuestion(nextQuestion);
     }
+    
 }
+
+// Show google
+function showGooglesimple() {
+    window.location.href = "https://www.google.com/search?q=simple+quick+meal+recipe";
+}
+
+function showGooglehealthy() {
+    window.location.href = "https://www.google.com/search?q=healthy+and+nutritious+meal+recipe";
+}
+
+function showGooglebudget() {
+    window.location.href = "https://www.google.com/search?q=budget+friendly+meal+recipe";
+}
+
+function showGooglefreezer() {
+    window.location.href = "https://www.google.com/search?q=freezer+friendly+meal+recipe";
+}
+
+
 
 // Navigate to the previous question
 function goBack() {
@@ -287,8 +266,15 @@ function goBack() {
     showQuestion(previousQuestion);
 }
 
+
 // Show result
 function showResult() {
+    const places = {
+        "<2": ["Place A (nearby)", "Place B (within 2 km)", "Place C (short walk)"],
+        "2-5": ["Place D (moderate distance)", "Place E (within 5 km)", "Place F (bike ride)"],
+        ">5": ["Place G (long drive)", "Place H (outskirts)", "Place I (explore further)"],
+    };
+    const distance = questions.find((q) => q.id === nextStep);
     document.getElementById("question-container").classList.add("hidden");
     const resultContainer = document.getElementById("result-container");
     resultContainer.classList.remove("hidden");
