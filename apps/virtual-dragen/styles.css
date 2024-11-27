@@ -6,11 +6,16 @@
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #f0f8ff;
+  background-color: #ffd99b;
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
+}
+
+petstage{
+  font-family: Arial, sans-serif;
+  font-size: 24px;
 }
 
 .container {
@@ -49,7 +54,7 @@ h1 {
 #progress-bar {
   width: 0%;
   height: 20px;
-  background-color: #4caf50;
+  background-color: #ffd99b;
   transition: width 0.5s;
 }
 

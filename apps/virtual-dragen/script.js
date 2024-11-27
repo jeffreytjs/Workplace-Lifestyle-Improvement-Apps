@@ -3,6 +3,7 @@ const progressBar = document.getElementById('progress-bar');
 const pet = document.getElementById('pet');
 let isTransitioning = false; // Flag to prevent overlapping transitions
 let currentStage = 0; // Tracks the current pet stage (0 to 4)
+const petElement = document.getElementById("petstage");
 
 function addProgress(points) {
   if (isTransitioning) return; // Prevent adding progress during transitions
@@ -36,7 +37,7 @@ function updatepet(stage) {
 
   // Define stage and transition images
   const stages = ['mir1.webp', 'mir2.webp', 'mir3.webp', 'mir4.webp','mir5.webp'];
-  const transitions = ['transition.webp', 'transition.webp', 'transition.webp', 'transition.webp','transition.webp'];
+  const transitions = ['', 'hatch.png', 'transition.webp', 'transition.webp','transition.webp'];
 
   // Show the transition image
   pet.src = transitions[stage];
@@ -46,4 +47,11 @@ function updatepet(stage) {
     pet.src = stages[stage];
     isTransitioning = false;
   }, 1000); // 1-second delay for transition
+
+  if (pet.src = stages[1]) {
+    petElement.innerHTML = '<div id="petstage">Egg</div>';
+  }
+  else {
+    alert('not working');
+  }
 }
