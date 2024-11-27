@@ -1,0 +1,110 @@
+/* General Reset */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #ffd99b;
+    color: #2C2828;
+    text-align: center;
+}
+
+/* Fullscreen Container */
+.fullscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #ffd99b;
+}
+
+.hidden {
+    display: none;
+}
+
+/* App Header */
+.app h1 {
+    font-size: 3rem;
+    color: #FF847C;
+    margin-bottom: 10px;
+}
+
+.app p {
+    font-size: 1.2rem;
+    color: #6F4E37;
+    margin-bottom: 30px;
+}
+
+.illustration {
+    max-width: 60%;
+    height: auto;
+    margin-bottom: 20px;
+}
+
+/* Buttons */
+button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #FF847C;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+    background-color: #E6736F;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+/* Highlighted Text */
+.highlight-text {
+    font-size: 1.5rem;
+    color: #FF847C;
+    font-weight: bold;
+}
+
+/* Suggestions Grid */
+.suggestions-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin: 20px 0;
+}
+
+.suggestions-grid .card {
+    background-color: #FFF;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 15px;
+    width: 280px;
+    text-align: left;
+    transition: transform 0.3s ease;
+}
+
+.suggestions-grid .card:hover {
+    transform: translateY(-5px);
+}
+
+.suggestions-grid img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    margin-bottom: 10px;
+}
+
+.option-description {
+    font-weight: normal;
+}
