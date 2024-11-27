@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Chat</title>
+    <style>
+        body {
+            font-family: Georgia, 'Times New Roman', Times, serif;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #ffd99b;
+        }
+
+        #container {
+            text-align: center;
+            background: rgb(255, 255, 255);
+            padding: 50px;
+            border-radius: 8px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            font-size: 32px;
+            margin-bottom: 10px;
+        }
+        s1 {
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+
+        #onlineCount {
+            margin-bottom: 20px;
+            font-size: 18px;
+            color: #333;
+        }
+
+        #matchButton {
+            padding: 10px 20px;
+            font-size: 16px;
+            background: #fcc75d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #matchButton:hover {
+            background: #ff661a;
+        }
+
+        #chatRoom {
+            display: none;
+            margin-top: 20px;
+        }
+       
+        #inputBox {
+            display: flex;
+            gap: 10px;
+        }
+
+        #messageInput {
+            flex: 1;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        #messages {
+            height: 200px;
+            overflow-y: auto;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+
+        }
+
+        #sendButton {
+            padding: 8px 20px;
+            background: #fcc75d;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #sendButton:hover {
+            background: #ff661a;
+        }
+
+        html {
+            display: grid;
+            min-height: 100%;
+        }
+
+        #timer {
+            color: #f6f4f3;
+            text-align: center;
+            text-transform: uppercase;
+            font-family: "Lato", sans-serif;
+            font-size: 0.7em;
+            letter-spacing: 5px;
+            margin-top:4%;
+        }   
+        .minutes,
+        .seconds {
+            display: inline-block;
+            padding: 10px;
+            width: 200px;
+            border-radius: 5px;
+        }
+
+        .minutes {
+            background: #ffe817;
+            color: #183059;
+        }
+
+        .seconds {
+            background: #f79503;
+        }
+        .numbers {
+            font-family: "Montserrat", sans-serif;
+            color: #491f04;
+            font-size: 4em;
+        }
+        .orange {
+            position: absolute;
+            background: #f79503;
+            height: 85px;
+            width: 75px;
+            left: 30%;
+            top: 2%;
+        }
+
+        .orange .triangle {
+            border-bottom: 14px solid #f79503;
+            }
+
+        .orange .string {
+            background: #f79503;
+            border: 1px solid #f79503;
+}
+
+        .yellow {
+            position: absolute;
+            background: #ffe817;
+            height: 80px;
+            width: 80px;
+            left: 62%;
+            top: 3%;
+        }
+
+        .yellow .triangle {
+            border-bottom: 14px solid #ffe817;
+        }
+
+        .yellow .string {
+            background: #ffe817;
+            border: 1px solid #ffe817;
+        }
+
+        .balloon {
+            border: 1px solid #000;
+            border-radius: 50% 50% 50% 50%/ 40% 40% 60% 60%;
+            z-index: 1;
+        }
+
+        .eye {
+            position: absolute;
+            width: 7px;
+            height: 7px;
+            top: 40%;
+            left: 22%;
+            background: #000;
+            border-radius: 50%;
+        }
+
+        .eye:after {
+            content: "";
+            left: 35px;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background: #000;
+            position: absolute;
+        }
+
+        .mouth {
+            position: absolute;
+            top: 45%;
+            left: 43%;
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+        }
+
+        .happy {
+            border: 2px solid;
+            border-color: transparent #000 #000 transparent;
+            transform: rotate(45deg);
+        }
+
+        .triangle {
+            position: absolute;
+            left: 40%;
+            bottom: -10%;
+            width: 0;
+            height: 0;
+            border-left: 7px solid transparent;
+            border-right: 7px solid transparent;
+        }
+
+        .string {
+            position: absolute;
+            height: 70px;
+            width: 1px;
+            left: 48%;
+            top: 100%;
+            z-index: -1;
+        }
+
+        .star {
+            width: 20px;
+            height: 20px;
+            background: #7e7a79;
+            -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        }
+        .star-red {
+        width: 30px;
+        height: 30px;
+        margin-left: 51px;
+        margin-top: -5px;
+        background: #ef2f3c;
+        -webkit-clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+        clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+}
+    </style>
+</head>
+<body>
+    <div id="container">
+        <p></p>
+        <p><img src="meetafriendlogo.png" alt="illuminalogo" width="400"></p>
+        <div id="timer"></div>
+        <p></p>
+        <div id="onlineCount">Illuminions online: 0</div>
+                <p></p>
+        <button id="matchButton">Chat now</button>
+
+        <div id="chatRoom">
+            <div id="messages"></div>
+            <div id="inputBox">
+                <input id="messageInput" type="text" placeholder="Type a message...">
+                <button id="sendButton">Send</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        const socket = new WebSocket("ws://localhost:8080"); // Replace with your server address
+        const onlineCountEl = document.getElementById("onlineCount");
+        const matchButton = document.getElementById("matchButton");
+        const chatRoom = document.getElementById("chatRoom");
+        const messages = document.getElementById("messages");
+        const messageInput = document.getElementById("messageInput");
+        const sendButton = document.getElementById("sendButton");
+        const timerElement = document.getElementById("timer");
+
+
+
+        let countdowntimer
+        let matched = false;
+        let chatTimer;
+
+        // Listen for WebSocket events
+        socket.onopen = () => {
+            console.log("Connected to server");
+        };
+
+        socket.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+
+            if (data.type === "updateOnlineCount") {
+                onlineCountEl.textContent = `Friends online: ${data.count}`;
+            }
+
+            if (data.type === "match") {
+                matched = true;
+                chatRoom.style.display = "block";
+                matchButton.style.display = "none";
+                startChatTimer();
+                startCountdown(10 * 60);
+
+                
+                appendMessage("Start chatting");
+            }
+                 
+            if (data.type === "chat") {
+                appendMessage(`Illuminion: ${data.message}`);
+            }
+        };
+
+        socket.onclose = () => {
+            console.log("Disconnected from server");
+        };
+
+        matchButton.addEventListener("click", () => {
+            if (!matched) {
+                socket.send(JSON.stringify({ type: "findMatch" }));
+            }
+            setTimeout(() => {
+            if (!matched) {
+                alert("No one is available, waiting for someone to join!");
+                chatRoom.style.display = "none";   // Hide chatroom when there are no matches
+            }
+             }, 500);
+            });
+
+       // sendButton.addEventListener("click", () => {
+       //     const message = messageInput.value.trim();
+       //     if (message) {
+       //         appendMessage(`You: ${message}`);
+       //         socket.send(JSON.stringify({ type: "chat", message }));
+       //         messageInput.value = "";
+       //     }
+       // });
+
+        function sendMessage() {
+        const message = messageInput.value.trim();
+        if (message) {
+            appendMessage(`You: ${message}`);
+            socket.send(JSON.stringify({ type: "chat", message }));
+            messageInput.value = "";  
+        }
+    }
+
+        // Send message by clicking the button
+        sendButton.addEventListener("click", sendMessage);
+
+        // Send message using the Enter Key
+        messageInput.addEventListener("keydown", (event) => {
+            if (event.key === "Enter") {
+                event.preventDefault();  
+                sendMessage();           
+            }
+        });
+
+        function appendMessage(text) {
+            const messageEl = document.createElement("div");
+            messageEl.textContent = text;
+            messages.appendChild(messageEl);
+            messages.scrollTop = messages.scrollHeight;
+        }
+
+        function startChatTimer() {
+            if (chatTimer) clearTimeout(chatTimer);
+
+            chatTimer = setTimeout(() => {
+                appendMessage("Chat ended. You will be disconnected.");
+                chatRoom.style.display = "none";
+                matchButton.style.display = "block";
+                matched = false;
+            }, 10 * 60 * 1000); // 10 minutes
+        }
+
+        function startCountdown(duration) {
+     let remainingTime = duration; // Duration in seconds
+
+        function updateTimerDisplay() {
+            const minutes = Math.floor(remainingTime / 60);
+            const seconds = remainingTime % 60;
+            timerElement.innerHTML = '<div class="balloon orange"><div class="star-red"></div><div class="face"><div class="eye"></div><div class="mouth happy"></div></div><div class="triangle"></div><div class="string"></div></div><div class="balloon yellow"><div class="star"></div><div class="face"><div class="eye"></div><div class="mouth happy"></div></div><div class="triangle"></div><div class="string"></div></div><div class="minutes"><div class="numbers">' + minutes + '</div>mins</div><div class="seconds"><div class="numbers">' + seconds + '</div>secs</div></div>';
+                       
+        }
+
+    updateTimerDisplay(); // Show initial time
+
+    countdownTimer = setInterval(() => {
+        remainingTime -= 1;
+        if (remainingTime <= 0) {
+            clearInterval(countdownTimer);
+            endChat();
+        }
+        updateTimerDisplay();
+    }, 1000);
+    }   
+
+   
+    </script>
+</body>
+</html>
