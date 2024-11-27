@@ -274,20 +274,22 @@ function showResult() {
         "2-5": ["Place D (moderate distance)", "Place E (within 5 km)", "Place F (bike ride)"],
         ">5": ["Place G (long drive)", "Place H (outskirts)", "Place I (explore further)"],
     };
-    const distance = questions.find((q) => q.id === nextStep);
     document.getElementById("question-container").classList.add("hidden");
     const resultContainer = document.getElementById("result-container");
     resultContainer.classList.remove("hidden");
+    console.log(userSelections["step-4"]);
 
     // Display placeholder results
-    document.getElementById("spot-name").innerText = "A Great Lunch Spot";
+    const distance = userSelections["step-4"];
+    const foodSpots = places[distance];
+    var foodSpot = foodSpots[Math.floor(Math.random()*foodSpots.length)]
+    console.log(foodSpot)
+    document.getElementById("spot-name").innerText = foodSpot || "A Great Lunch Spot";
     document.getElementById("cuisine-type").innerText =
         userSelections["step-7"] || "Any Cuisine";
-    document.getElementById("recommendation").innerText =
-        userSelections["step-8"] || "Any Recommendation";
-    document.getElementById("travel-info").innerText = `Mode: ${
+    document.getElementById("distance").innerText = `Mode: ${
         userSelections["step-5"]
-    }, Distance: ${userSelections["step-6"]} km`;
+    }, Distance: ${userSelections["step-4"]} km`;
 }
 
 // Restart the app
