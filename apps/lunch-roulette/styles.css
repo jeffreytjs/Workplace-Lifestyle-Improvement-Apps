@@ -1,0 +1,78 @@
+/* styles.css */
+body {
+    font-family: 'Poppins', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #FFE5D9;
+    color: #2C2828;
+    text-align: center;
+}
+
+.fullscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #FFE5D9;
+}
+
+.app h1 {
+    font-size: 3rem;
+    color: #FF847C;
+    margin-bottom: 10px;
+}
+
+.app p {
+    font-size: 1.2rem;
+    color: #6F4E37;
+    margin-bottom: 30px;
+}
+
+.hidden {
+    display: none;
+}
+
+button {
+    display: inline-block;
+    margin: 10px;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    color: #fff;
+    background-color: #FF847C;
+    border: none;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.option-description {
+    font-weight: normal;
+}
+
+button:hover {
+    background-color: #E6736F;
+    transform: translateY(-2px);
+}
+
+button:active {
+    transform: translateY(0);
+    box-shadow: none;
+}
+
+input {
+    padding: 10px;
+    font-size: 1rem;
+    border: 2px solid #FF847C;
+    border-radius: 5px;
+    width: 80%;
+    margin-bottom: 20px;
+}
+
+input:focus {
+    outline: none;
+    border-color: #E6736F;
+}
