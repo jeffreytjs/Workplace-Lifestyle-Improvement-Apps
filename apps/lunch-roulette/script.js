@@ -7,7 +7,6 @@ let userSelections = {
   time: null,
   transport: null,
   distance: null,
-  cuisine: null,
   recommendation: null,
 };
 
@@ -175,7 +174,6 @@ function showQuestion(question) {
       });
 
       buttonDiv.appendChild(button);
-
       questionDiv.appendChild(buttonDiv);
     });
   } else if (question.input) {
@@ -227,8 +225,6 @@ function handleAnswer(questionId, answer, nextStep) {
   } else if (nextStep == "googlefreezer") {
     showGooglefreezer();
   } else {
-  }
-  {
     const nextQuestion = questions.find((q) => q.id === nextStep);
     showQuestion(nextQuestion);
   }
@@ -280,25 +276,37 @@ function showResult() {
   document.getElementById("question-container").classList.add("hidden");
   const resultContainer = document.getElementById("result-container");
   resultContainer.classList.remove("hidden");
-  console.log(userSelections["step-4"]);
 
   // Display placeholder results
-  const distance = userSelections["step-4"];
-  const foodSpots = places[distance];
-  var foodSpot = foodSpots[Math.floor(Math.random() * foodSpots.length)];
-  console.log(foodSpot);
-  document.getElementById("spot-name").innerText =
-    foodSpot || "A Great Lunch Spot";
-  document.getElementById("cuisine-type").innerText =
-    userSelections["step-7"] || "Any Cuisine";
-  document.getElementById(
-    "distance"
-  ).innerText = `Mode: ${userSelections["step-5"]}, Distance: ${userSelections["step-4"]} km`;
+  let distance = userSelections["step-4"];
+  if (distance) {
+    const foodSpots = places[distance];
+    var randomFoodSpot =
+      foodSpots[Math.floor(Math.random() * foodSpots.length)];
+  } else {
+    const distances = Object.keys(places);
+    distance = distances[Math.floor(Math.random() * distances.length)];
+    const foodSpots = places[distance];
+    var randomFoodSpot =
+      foodSpots[Math.floor(Math.random() * foodSpots.length)];
+  }
+  console.log(randomFoodSpot);
+
+  document.getElementById("spot-name").innerText = randomFoodSpot || "Jolibee";
+  document.getElementById("distance").innerText = `${distance} km`;
 }
 
 // Restart the app
 function restart() {
-  userSelections = {};
+  userSelections = {
+    mode: null,
+    purpose: null,
+    dining: null,
+    time: null,
+    transport: null,
+    distance: null,
+    recommendation: null,
+  };
   questionHistory = [];
   document.getElementById("result-container").classList.add("hidden");
   document.getElementById("welcome-container").classList.remove("hidden");
