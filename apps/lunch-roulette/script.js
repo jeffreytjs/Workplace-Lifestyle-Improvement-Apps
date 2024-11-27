@@ -21,6 +21,7 @@ const questions = [
     options: [
       { text: "Dine In", next: "step-6", value: "dine-in" },
       { text: "Eat Out", next: "step-2", value: "eat-out" },
+      { text: "Surprise me", next: "result", value: "surprise-me" },
     ],
   },
   {
