@@ -15,7 +15,7 @@ export function Timer({
 }) {
     const [isPaused, setPaused] = useState(false);
     const [timeLeft, setTimeLeft] = useState(timerDuration * 60);
-    const [className, setClassName] = useState("main-page");
+    const [className, setClassName] = useState("timer-div");
     const timer = useRef<number>();
 
     const stopTimer = () => {
@@ -47,8 +47,8 @@ export function Timer({
     useEffect(() => {
         resumeTimer();
         setTimeout(() => {
-            setClassName("main-page timer-div")
-        }, 2000)
+            setClassName(className + " disappearing-div")
+        }, 3000)
     }, []);
 
     useEffect(() => {
@@ -57,12 +57,9 @@ export function Timer({
     }, [timeLeft])
 
     return (
-    <div className={className}>
-        <div>
+    <div className={className} style={{marginTop: "2rem"}}>
             <h2>{leftpad(Math.floor(timeLeft / 60))}:{leftpad(timeLeft % 60)}</h2>
-        </div>
-
-        <div style={{marginTop: "20px"}}>
+        <div style={{marginTop: "-20px"}}>
             {isPaused
                 ? <button onClick={resumeTimer}>Resume</button>
                 : <button onClick={pauseTimer}>Pause</button>
