@@ -78,7 +78,7 @@ function App() {
                 <div className="flex-row" style={{marginTop: "10px"}}>
                     Theme:
                     <select onChange={(event) => setVideo(event.target.value)} className="input-select" value={video}>
-                        <option style={{color: "white"}} value="">Default</option>
+                        <option style={{color: "black"}} value="">Default</option>
                         <option style={{color: "black"}} value={forestVideo}>Forest</option>
                         <option style={{color: "black"}} value={rainVideo}>Rain</option>
                     </select>
