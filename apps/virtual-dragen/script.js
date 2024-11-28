@@ -5,10 +5,32 @@ let isTransitioning = false; // Flag to prevent overlapping transitions
 let currentStage = 0; // Tracks the current pet stage (0 to 4)
 const petElement = document.getElementById("petstage");
 let currentPetName;
+let currentProgress;
+// Define stage and transition images
+const stages = [
+  "mir1.webp",
+  [
+    "mir2.webp",
+    '<div id="petstage">Congrats! Your dragen egg hatched into a baby! uwu </div>',
+  ],
+  [
+    "mir3.webp",
+    '<div id="petstage">Your dragen grew! Continue doing tasks to grow your dragen even more!</div>',
+  ],
+  [
+    "mir4.webp",
+    '<div id="petstage">Keep it up! Your dragen is adulting with you :)</div>',
+  ],
+  [
+    "mir5.webp",
+    '<div id="petstage">Congrats! Your dragen is all grown up now!</div>',
+  ],
+];
 
 // Prompt for pet name on load
 window.onload = async () => {
   currentPetName = localStorage.getItem("petName");
+  currentProgress = localStorage.getItem("progress");
 
   if (!currentPetName) {
     currentPetName = prompt("Name your pet (must be unique):");
@@ -21,8 +43,9 @@ window.onload = async () => {
 
     // Save pet name locally and in Firebase
     localStorage.setItem("petName", currentPetName);
-    alert(`Your pet "${currentPetName}" has been created!`);
+    alert(`Your pet "${currentPetName}" is ready to grow with you!`);
   }
+
   // Update the header with the pet's name
   const greetings = [
     "IS HYPED UP AND READY TO COMPLETE TASKS!! ",
@@ -38,6 +61,22 @@ window.onload = async () => {
       greetings[Math.floor(Math.random() * greetings.length)];
     petNameHeader.textContent = `${currentPetName} ${randomGreeting}`;
   }
+
+  if (currentProgress) {
+    progress = parseInt(currentProgress);
+    progressBar.style.width = `${progress}%`;
+
+    const newStage = determineStage(progress);
+    currentStage = newStage;
+    console.log(newStage);
+    // Initialize accordingly
+    if (progress < 20) {
+      pet.src = stages[0];
+    } else {
+      pet.src = stages[currentStage][0];
+      petElement.innerHTML = stages[currentStage][1];
+    }
+  }
 };
 
 function addProgress(points) {
@@ -50,11 +89,18 @@ function addProgress(points) {
 
   progress += points;
   if (progress > 100) progress = 100; // Cap progress at 100%
+  localStorage.setItem("progress", progress.toString());
   console.log(progress);
 
   // Update progress bar width
   progressBar.style.width = `${progress}%`;
 
+  if (progress === 100) {
+    // Congratulatory prompt
+    alert(
+      "🎉 Congratulations! You've reached 100% progress! Stay tuned for more updates, maybe more unlockable rewards and fashion items?"
+    );
+  }
   // Determine the current stage based on progress
   const newStage = determineStage(progress);
 
@@ -75,15 +121,6 @@ function determineStage(progress) {
 
 function updatepet(stage) {
   isTransitioning = true;
-
-  // Define stage and transition images
-  const stages = [
-    "mir1.webp",
-    "mir2.webp",
-    "mir3.webp",
-    "mir4.webp",
-    "mir5.webp",
-  ];
   const transitions = [
     "",
     ["mir1-2.gif", "hatch.png"], // Two images for stage 1 transition
@@ -105,9 +142,8 @@ function updatepet(stage) {
       petElement.innerHTML = '<div id="petstage">Wow, look at that!</div>';
     }, 2500); // 1-second delay for the first image
     setTimeout(() => {
-      pet.src = stages[stage];
-      petElement.innerHTML =
-        '<div id="petstage">Congrats! Your dragen egg hatched into a baby! uwu </div>';
+      pet.src = stages[stage][0];
+      petElement.innerHTML = stages[stage][1];
       isTransitioning = false;
     }, 4500);
   }
@@ -118,9 +154,8 @@ function updatepet(stage) {
     pet.src = transitions[stage];
 
     setTimeout(() => {
-      pet.src = stages[stage];
-      petElement.innerHTML =
-        '<div id="petstage">Your dragen grew! Continue doing tasks to grow your dragen even more!</div>';
+      pet.src = stages[stage][0];
+      petElement.innerHTML = stages[stage][1];
       isTransitioning = false;
     }, 2500);
   }
@@ -130,9 +165,8 @@ function updatepet(stage) {
     pet.src = transitions[stage];
 
     setTimeout(() => {
-      pet.src = stages[stage];
-      petElement.innerHTML =
-        '<div id="petstage">Keep it up! Your dragen is adulting with you :)</div>';
+      pet.src = stages[stage][0];
+      petElement.innerHTML = stages[stage][1];
       isTransitioning = false;
     }, 2500);
   }
@@ -142,9 +176,8 @@ function updatepet(stage) {
     pet.src = transitions[stage];
 
     setTimeout(() => {
-      pet.src = stages[stage];
-      petElement.innerHTML =
-        '<div id="petstage">Congrats! Your dragen is all grown up now!</div>';
+      pet.src = stages[stage][0];
+      petElement.innerHTML = stages[stage][1];
       isTransitioning = false;
     }, 2500);
   }
