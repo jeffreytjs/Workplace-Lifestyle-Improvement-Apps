@@ -25,19 +25,19 @@
   object-fit: cover;
 }
 
-.timer-div {
+.white-div {
   width: fit-content;
-  background-color: rgba(255, 255, 255, 0.8);
-  padding: 0px 20px 20px 20px;
+  background-color: rgba(0, 0, 0, 0.5);
   border-radius: 20px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 1);
   font-family: 'Palatino', 'Times New Roman', 'serif';
+  color: white;
 }
 
 .disappearing-div {
   opacity: 0;
   transition: all 1.5s linear;
-  transition-delay: 1s;
+  transition-delay: 2s;
 }
 
 .disappearing-div:hover {
@@ -93,9 +93,16 @@
   height: 20px;
 }
 
-.worries {
-  position: absolute;
-  bottom: 100px;
-  font-size: 1em;
-  min-width: 600px;
+.quote-fade-in {
+  opacity: 1;
+  transition: all 4s linear;
+}
+
+.quote-fade-out {
+  opacity: 0;
+  transition: all 4s linear;
+}
+
+.invisible {
+  opacity: 0;
 }

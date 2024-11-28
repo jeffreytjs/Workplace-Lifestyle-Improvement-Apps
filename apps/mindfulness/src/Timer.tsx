@@ -7,15 +7,17 @@ function leftpad(num: number) {
 export function Timer({
     timerDuration,
     backToMenu,
-    videoRef
+    videoRef,
+    audioRef
 }: {
     timerDuration: number
     backToMenu: Function,
     videoRef: React.MutableRefObject<HTMLVideoElement | null>
+    audioRef?: React.MutableRefObject<HTMLAudioElement | null>
 }) {
     const [isPaused, setPaused] = useState(false);
     const [timeLeft, setTimeLeft] = useState(timerDuration * 60);
-    const [className, setClassName] = useState("timer-div");
+    const [className, setClassName] = useState("white-div");
     const timer = useRef<number>();
 
     const stopTimer = () => {
@@ -35,6 +37,7 @@ export function Timer({
         clearInterval(timer.current);
         setPaused(true);
         videoRef.current?.pause();
+        audioRef?.current?.pause();
     }
 
     const resumeTimer = () => {
@@ -42,13 +45,14 @@ export function Timer({
         setPaused(false);
         timer.current = setTimeout(updateTimer, 1000);
         videoRef.current?.play();
+        audioRef?.current?.play();
     }
 
     useEffect(() => {
         resumeTimer();
         setTimeout(() => {
             setClassName(className + " disappearing-div")
-        }, 3000)
+        }, 2000)
     }, []);
 
     useEffect(() => {
@@ -57,7 +61,7 @@ export function Timer({
     }, [timeLeft])
 
     return (
-    <div className={className} style={{marginTop: "2rem"}}>
+    <div className={className} style={{marginTop: "2rem", padding: "0px 20px 20px 20px"}}>
             <h2>{leftpad(Math.floor(timeLeft / 60))}:{leftpad(timeLeft % 60)}</h2>
         <div style={{marginTop: "-20px"}}>
             {isPaused
