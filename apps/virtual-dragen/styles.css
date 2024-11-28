@@ -78,8 +78,9 @@ h1 {
 
 .tasks button {
   padding: 10px 20px;
-  font-size: 16px;
-  font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+  font-size: 14px;
+  font-family: 'Segoe Print', Consolas, 'Courier New', monospace;
+  font-weight: bold;
   color: #000000;
   background-color: #fcc75d;
   border: none;
