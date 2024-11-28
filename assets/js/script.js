@@ -126,7 +126,7 @@ link.addEventListener("click", function (event) {
 
   // Display confirmation dialog
   const userConfirmation = confirm(
-    "It may not work if you are outside Illumina network or on a mobile device. Continue?"
+    "This app may not work if you are not connected via Illumina vpn. Continue?"
   );
 
   // Redirect to the link's URL if the user confirms
