@@ -5,10 +5,12 @@ let isTransitioning = false; // Flag to prevent overlapping transitions
 let currentStage = 0; // Tracks the current pet stage (0 to 4)
 const petElement = document.getElementById("petstage");
 let currentPetName;
+let currentProgress;
 
 // Prompt for pet name on load
 window.onload = async () => {
   currentPetName = localStorage.getItem("petName");
+  currentProgress = localStorage.getItem("progress");
 
   if (!currentPetName) {
     currentPetName = prompt("Name your pet (must be unique):");
@@ -23,10 +25,16 @@ window.onload = async () => {
     localStorage.setItem("petName", currentPetName);
     alert(`Your pet "${currentPetName}" has been created!`);
   }
+
   // Update the header with the pet's name
   const petNameHeader = document.getElementById("pet-name-header");
   if (petNameHeader) {
     petNameHeader.textContent = `TRAIN ${currentPetName} BY COMPLETING TASKS!`;
+  }
+
+  if (currentProgress) {
+    progress = parseInt(currentProgress);
+    progressBar.style.width = `${progress}%`;
   }
 };
 
@@ -40,6 +48,7 @@ function addProgress(points) {
 
   progress += points;
   if (progress > 100) progress = 100; // Cap progress at 100%
+  localStorage.setItem("progress", progress.toString());
   console.log(progress);
 
   // Update progress bar width
