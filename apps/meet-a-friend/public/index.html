@@ -359,10 +359,13 @@
           isMatched = true;
           chatRoom.style.display = "block";
           matchButton.style.display = "none";
-          startChatTimer();
-          startCountdown(10);
-
-          appendMessage("Start chatting");
+          startCountdown(10*60);
+          appendMessage("Chatroom Rules:");
+          appendMessage("1. Be Respectful.");
+          appendMessage("2. Do not discuss confidential information.");
+          appendMessage("3. No spamming.");
+          appendMessage("---------------------------------");
+          appendMessage("Enjoy chatting!");
         }
 
         if (data.type === "chat") {
@@ -414,18 +417,6 @@
         messages.scrollTop = messages.scrollHeight;
       }
 
-      function startChatTimer() {
-        if (chatTimer) clearTimeout(chatTimer);
-
-        chatTimer = setTimeout(() => {
-          appendMessage("Chat ended. You will be disconnected.");
-          chatRoom.style.display = "none";
-          matchButton.style.display = "block";
-          matched = false;
-          //}, 10 * 60 * 1000); // 10 minutes
-        }, 10 * 1000); // 10 minutes
-      }
-
       function startCountdown(duration) {
         let remainingTime = duration; // Duration in seconds
 
@@ -440,35 +431,22 @@
             "</div>secs</div></div>";
         }
         updateTimerDisplay(); // Show initial time
-        // if (duration === 0){
-        //   alert("Your 10 minutes is up!")
-        //   chatRoom.style.display = "none";
-        //   matchButton.style.display = "block";
-        // } else{
-        //   updateTimerDisplay(); // Show initial time
-        // }
-
         countdownTimer = setInterval(() => {
         remainingTime -= 1;
          if (remainingTime <= 0) {
            timerElement.style.display = "none";
            chatRoom.style.display = "none";
-           matchButton.style.display = "block";
+           matchButton.style.display = "";
            clearInterval(countdownTimer);
-           alert("Your 10 minutes is up!")
-           endChat();
+           alert("Your 10 minutes is up! Chat is closed!");
+           refreshPage();
          }
          updateTimerDisplay();
         }, 1000);
-
-        /*function endChat() {
-          appendMessage("Chat ended. You will be disconnected.");
-          chatRoom.style.display = "none";
-          matchButton.style.display = "block";
-          matched = false;
-        }
-        */
       }
+      function refreshPage() {       
+        location.reload(); // Refreshes the page 
+        }
 
     </script>
   </body>
