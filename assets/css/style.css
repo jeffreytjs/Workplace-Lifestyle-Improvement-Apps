@@ -37,7 +37,7 @@ Text Domain: flusk
 }
 
 ::selection {
-  background-color: #475b6f;
+  background-color: #ff661a;
   color: #fff;
 }
 
@@ -161,7 +161,7 @@ h6 {
 }
 
 #header .top.solid {
-  background: #475b6f;
+  background: #ff661a;
   padding-top: 15px;
   padding-bottom: 15px;
 }
@@ -221,7 +221,7 @@ h6 {
   top: 0;
   bottom: 0;
   margin-right: -300px;
-  background: #2b3e51;
+  background: #ff661a;
   width: 300px;
   padding: 20px;
   z-index: 999;
@@ -267,6 +267,7 @@ h6 {
   -o-background-size: cover;
   overflow: hidden;
   padding: 60px 0;
+  font-family: "Segoe Print", Consolas, "Courier New", monospace;
 }
 .parallax {
   padding: 80px 0;
@@ -335,7 +336,7 @@ h6 {
   transition: all 0.2s;
 }
 .recent-work:hover {
-  background-size: 200%;
+  background-size: 120%;
   background-position: center;
 }
 .recent-work:hover:before,
@@ -425,10 +426,10 @@ h6 {
 ///////////////////////////////////////////////////////////////////////*/
 
 #footer {
-  background: #2b3e51;
+  background: #ff661a;
   color: white;
   justify-content: center; /* Centers content horizontally */
-  text-align: center;     /* Ensures text alignment */
+  text-align: center; /* Ensures text alignment */
 }
 
 /*////////////////////////////////////////////////////////////////////////
