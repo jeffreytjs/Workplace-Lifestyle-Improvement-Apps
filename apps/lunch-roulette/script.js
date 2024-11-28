@@ -323,6 +323,13 @@ function restart() {
   document.getElementById("welcome-container").classList.remove("hidden");
 }
 
+// Suggest more activities
+function moreActivities() {
+  showQuestion(questions[7]);
+  document.getElementById("result-container").classList.add("hidden");
+  document.getElementById("question-container").classList.remove("hidden");
+}
+
 // Start button event listener
 document.getElementById("start-button").addEventListener("click", () => {
   document.getElementById("welcome-container").classList.add("hidden");
