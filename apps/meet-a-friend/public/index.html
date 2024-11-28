@@ -360,7 +360,7 @@
           chatRoom.style.display = "block";
           matchButton.style.display = "none";
           startChatTimer();
-          startCountdown(1 * 100);
+          startCountdown(10);
 
           appendMessage("Start chatting");
         }
@@ -384,7 +384,7 @@
             alert("Chatroom is now close!");
             chatRoom.style.display = "none"; // Hide chatroom when there are no matches
           }
-        }, 100);
+        }, 1000);
       });
 
       function sendMessage() {
@@ -423,7 +423,7 @@
           matchButton.style.display = "block";
           matched = false;
           //}, 10 * 60 * 1000); // 10 minutes
-        }, 1 * 100); // 10 minutes
+        }, 10 * 1000); // 10 minutes
       }
 
       function startCountdown(duration) {
@@ -439,21 +439,27 @@
             seconds +
             "</div>secs</div></div>";
         }
-        if (duration === 0){
-          alert("Your 10 minutes is up!")
-          chatRoom.style.display = "none";
-          matchButton.style.display = "block";
-        }
         updateTimerDisplay(); // Show initial time
+        // if (duration === 0){
+        //   alert("Your 10 minutes is up!")
+        //   chatRoom.style.display = "none";
+        //   matchButton.style.display = "block";
+        // } else{
+        //   updateTimerDisplay(); // Show initial time
+        // }
 
-        //countdownTimer = setInterval(() => {
-       //  remainingTime -= 1;
-        //  if (remainingTime <= 0) {
-         //   clearInterval(countdownTimer);
-         //   endChat();
-        //  }
-        //  updateTimerDisplay();
-        //}, 10);
+        countdownTimer = setInterval(() => {
+        remainingTime -= 1;
+         if (remainingTime <= 0) {
+           timerElement.style.display = "none";
+           chatRoom.style.display = "none";
+           matchButton.style.display = "block";
+           clearInterval(countdownTimer);
+           alert("Your 10 minutes is up!")
+           endChat();
+         }
+         updateTimerDisplay();
+        }, 1000);
 
         /*function endChat() {
           appendMessage("Chat ended. You will be disconnected.");
