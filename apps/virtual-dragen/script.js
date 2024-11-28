@@ -82,7 +82,7 @@ function updatepet(stage) {
   // Special case for stage 1 transition with two images
   pet.src = stages[stage-1];
   if (stage === 1) {
-    petElement.innerHTML = '<div id="petstage">Wow, something is happening!</div>';
+    petElement.innerHTML = '<div id="petstage">Oh? Something is happening..</div>';
     pet.src = transitions[stage][0];
 
     // Wait for 1 second, then show the second transition image
@@ -94,16 +94,16 @@ function updatepet(stage) {
       pet.src = stages[stage];
       petElement.innerHTML = '<div id="petstage">Congrats! Your dragen egg hatched into a baby! uwu </div>';
       isTransitioning = false;
-    }, 4000); 
+    }, 4500); 
   }
     // Default behavior for other stages
   if (stage === 2) {
-    petElement.innerHTML = '<div id="petstage">Hm? Something is happening?</div>';
+    petElement.innerHTML = '<div id="petstage">Hm.. something is happening?</div>';
     pet.src = transitions[stage];
 
     setTimeout(() => {
       pet.src = stages[stage];
-      petElement.innerHTML = '<div id="petstage">Cmon, do something to grow your dragen more!</div>';
+      petElement.innerHTML = '<div id="petstage">Your dragen grew! Continue doing tasks to grow your dragen even more!</div>';
       isTransitioning = false;
     }, 2500); 
   }
@@ -118,7 +118,7 @@ function updatepet(stage) {
     }, 2500);
   }
   if (stage === 4) {
-    petElement.innerHTML = '<div id="petstage">Hm? Something is happening AGAIN?</div>';
+    petElement.innerHTML = '<div id="petstage">Something is happening AGAIN!</div>';
     pet.src = transitions[stage];
 
     setTimeout(() => {
