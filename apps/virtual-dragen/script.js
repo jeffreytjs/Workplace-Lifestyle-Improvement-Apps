@@ -25,6 +25,11 @@ window.onload = async () => {
   } else {
     alert(`Welcome back, ${currentPetName} is waiting for you!`);
   }
+// Update the header with the pet's name
+  const petNameHeader = document.getElementById("pet-name-header");
+  if (petNameHeader) {
+    petNameHeader.textContent = `TRAIN ${currentPetName} BY COMPLETING TASKS!`;
+  }
 };
 
 function addProgress(points) {
