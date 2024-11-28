@@ -38,6 +38,12 @@
         color: #333;
       }
 
+      #waitingCount {
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #333;
+      }
+
       #matchButton {
         padding: 10px 20px;
         font-size: 16px;
@@ -288,11 +294,12 @@
     <div id="container">
       <p></p>
       <p>
-        <img src="./meetafriendlogo.png" alt="illuminalogo" width="400" />
+        <img src=".\illuminameetafriend.gif" alt="illuminalogo" width="400" />
       </p>
       <div id="timer"></div>
       <p></p>
       <div id="onlineCount">Illuminions online: 0</div>
+      <div id="waitingCount">Waiting in Queue: 0</div>
       <p></p>
       <button id="matchButton">Chat now</button>
 
@@ -322,6 +329,7 @@
       //////////
       const status = document.getElementById("status");
       const onlineCount = document.getElementById("onlineCount");
+      const waitingCountElement = document.getElementById("waitingCount");
       const sendMessageButton = document.getElementById("sendMessage");
       let isMatched = false;
       //////////
@@ -341,15 +349,23 @@
           onlineCount.textContent = `Illuminons online: ${data.count}`;
         }
 
+        if (data.type === "updateWaitingCount") {
+          waitingCountElement.textContent = `Waiting in Queue: ${data.count}`;
+        }
+        
+
         if (data.type === "match") {
           matched = true;
           isMatched = true;
           chatRoom.style.display = "block";
           matchButton.style.display = "none";
-          startChatTimer();
-          startCountdown(1 * 10);
-
-          appendMessage("Start chatting");
+          startCountdown(10*60);
+          appendMessage("Chatroom Rules:");
+          appendMessage("1. Be Respectful.");
+          appendMessage("2. Do not discuss confidential information.");
+          appendMessage("3. No spamming.");
+          appendMessage("---------------------------------");
+          appendMessage("Enjoy chatting!");
         }
 
         if (data.type === "chat") {
@@ -358,7 +374,7 @@
       };
 
       socket.onclose = () => {
-        status.textContent = "Disconnected";
+        alert("Disconnected");
         console.log("Disconnected from server");
       };
 
@@ -368,10 +384,10 @@
         }
         setTimeout(() => {
           if (!matched) {
-            alert("No one is available, waiting for someone to join!");
+            alert("Chatroom is now close!");
             chatRoom.style.display = "none"; // Hide chatroom when there are no matches
           }
-        }, 500);
+        }, 1000);
       });
 
       function sendMessage() {
@@ -401,17 +417,6 @@
         messages.scrollTop = messages.scrollHeight;
       }
 
-      function startChatTimer() {
-        if (chatTimer) clearTimeout(chatTimer);
-
-        chatTimer = setTimeout(() => {
-          appendMessage("Chat ended. You will be disconnected.");
-          chatRoom.style.display = "none";
-          matchButton.style.display = "block";
-          matched = false;
-        }, 10 * 60 * 1000); // 10 minutes
-      }
-
       function startCountdown(duration) {
         let remainingTime = duration; // Duration in seconds
 
@@ -425,18 +430,24 @@
             seconds +
             "</div>secs</div></div>";
         }
-
         updateTimerDisplay(); // Show initial time
-
         countdownTimer = setInterval(() => {
-          remainingTime -= 1;
-          if (remainingTime <= 0) {
-            clearInterval(countdownTimer);
-            endChat();
-          }
-          updateTimerDisplay();
+        remainingTime -= 1;
+         if (remainingTime <= 0) {
+           timerElement.style.display = "none";
+           chatRoom.style.display = "none";
+           matchButton.style.display = "";
+           clearInterval(countdownTimer);
+           alert("Your 10 minutes is up! Chat is closed!");
+           refreshPage();
+         }
+         updateTimerDisplay();
         }, 1000);
       }
+      function refreshPage() {       
+        location.reload(); // Refreshes the page 
+        }
+
     </script>
   </body>
 </html>
