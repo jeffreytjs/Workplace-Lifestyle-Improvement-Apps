@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lunch Roulette</title>
+    <link rel="stylesheet" href="styles.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app">
+      <!-- Welcome Screen -->
+      <div id="welcome-container" class="fullscreen">
+        <header>
+          <img
+            src="images/welcome-illustration.svg"
+            alt="Welcome Illustration"
+            class="illustration"
+          />
+          <h1><i class="fas fa-utensils"></i> Lunch Roulette</h1>
+          <p>Feeling adventurous? Surprise your tastebuds!</p>
+          <button class="btn" id="start-button">Start</button>
+        </header>
+      </div>
+
+      <!-- Question Container -->
+      <div id="question-container" class="hidden fullscreen">
+        <h2><i class="fas fa-question-circle"></i> Choose Your Preferences</h2>
+        <!-- Questions will be dynamically inserted here -->
+        <div id="question-content"></div>
+      </div>
+
+      <!-- Result Container -->
+      <div id="result-container" class="hidden fullscreen">
+        <img
+          src="images/result-illustration.svg"
+          alt="Result Illustration"
+          class="illustration"
+        />
+        <h2><i class="fas fa-check-circle"></i> Your Lunch Spot:</h2>
+        <p id="spot-name" class="highlight-text">Random Lunch Spot</p>
+        <h3>Distance:</h3>
+        <p id="distance" class="highlight-text">-</p>
+        <button class="btn" onclick="restart()">Start Over</button>
+        <br />
+        <button class="btn" onclick="moreActivities()">
+          Suggest some activities over lunch
+        </button>
+      </div>
+
+      <!-- Suggestions -->
+      <div id="suggestion-container" class="hidden fullscreen">
+        <h2><i class="fas fa-utensils"></i> Recommendations</h2>
+        <div id="recipe-suggestions" class="suggestions-grid"></div>
+        <div id="restaurant-suggestions" class="suggestions-grid"></div>
+      </div>
+    </div>
+    <script src="script.js"></script>
+  </body>
+</html>
