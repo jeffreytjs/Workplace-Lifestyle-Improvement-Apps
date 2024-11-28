@@ -352,14 +352,13 @@
         if (data.type === "updateWaitingCount") {
           waitingCountElement.textContent = `Waiting in Queue: ${data.count}`;
         }
-        
 
         if (data.type === "match") {
           matched = true;
           isMatched = true;
           chatRoom.style.display = "block";
           matchButton.style.display = "none";
-          startCountdown(10*60);
+          startCountdown(10 * 60);
           appendMessage("Chatroom Rules:");
           appendMessage("1. Be Respectful.");
           appendMessage("2. Do not discuss confidential information.");
@@ -432,22 +431,21 @@
         }
         updateTimerDisplay(); // Show initial time
         countdownTimer = setInterval(() => {
-        remainingTime -= 1;
-         if (remainingTime <= 0) {
-           timerElement.style.display = "none";
-           chatRoom.style.display = "none";
-           matchButton.style.display = "";
-           clearInterval(countdownTimer);
-           alert("Your 10 minutes is up! Chat is closed!");
-           refreshPage();
-         }
-         updateTimerDisplay();
+          remainingTime -= 1;
+          if (remainingTime <= 0) {
+            timerElement.style.display = "none";
+            chatRoom.style.display = "none";
+            matchButton.style.display = "";
+            clearInterval(countdownTimer);
+            alert("Your 10 minutes is up! Chat is closed!");
+            refreshPage();
+          }
+          updateTimerDisplay();
         }, 1000);
       }
-      function refreshPage() {       
-        location.reload(); // Refreshes the page 
-        }
-
+      function refreshPage() {
+        location.reload(); // Refreshes the page
+      }
     </script>
   </body>
 </html>
