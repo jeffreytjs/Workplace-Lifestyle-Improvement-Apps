@@ -4,20 +4,21 @@ body {
   margin: 0;
   padding: 0;
   background-color: #ffd99b;
-  color: #2c2828;
+  color: #2C2828;
   text-align: center;
 }
 
 /* Fullscreen Container */
-.fullscreen {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  min-height: 100vh;
-  padding: 20px;
-  background-color: #ffd99b;
+/*.fullscreen {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px;
+    background-color: #ffd99b;
 }
+    */
 
 .hidden {
   display: none;
@@ -26,7 +27,7 @@ body {
 /* App Header */
 .app h1 {
   font-size: 3rem;
-  color: #ff847c;
+  color: #ff661a;
   margin-bottom: 10px;
 }
 
@@ -50,7 +51,7 @@ button {
   font-size: 1.1rem;
   font-weight: bold;
   color: #fff;
-  background-color: #ff847c;
+  background-color: #ff661a;
   border: none;
   border-radius: 25px;
   cursor: pointer;
@@ -59,7 +60,7 @@ button {
 }
 
 button:hover {
-  background-color: #e6736f;
+  background-color: #ff661a;
   transform: translateY(-2px);
 }
 
@@ -71,7 +72,7 @@ button:active {
 /* Highlighted Text */
 .highlight-text {
   font-size: 1.5rem;
-  color: #ff847c;
+  color: #ff661a;
   font-weight: bold;
 }
 
@@ -108,3 +109,11 @@ button:active {
 .option-description {
   font-weight: normal;
 }
+
+#container {
+    text-align: center;
+    background: rgb(255, 255, 255);
+    padding: 50px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  }
