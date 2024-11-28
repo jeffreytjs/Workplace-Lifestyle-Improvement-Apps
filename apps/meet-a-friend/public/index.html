@@ -360,8 +360,12 @@
           chatRoom.style.display = "block";
           matchButton.style.display = "none";
           startCountdown(10*60);
-
-          appendMessage("Start chatting");
+          appendMessage("Chatroom Rules:");
+          appendMessage("1. Be Respectful.");
+          appendMessage("2. Do not discuss confidential information.");
+          appendMessage("3. No spamming.");
+          appendMessage("---------------------------------");
+          appendMessage("Enjoy chatting!");
         }
 
         if (data.type === "chat") {
