@@ -1,10 +1,10 @@
 // run "node server.js" on command prompt to run the server
 // currently the server.js script running is users/achok
 
-const express = require('express');
+const express = require("express");
 const app = express();
 
-app.use(express.static('public')); // Serve all static files from the "public" directory
+app.use(express.static("public")); // Serve all static files from the "public" directory
 
 const http = require("http");
 const fs = require("fs");

@@ -409,8 +409,7 @@
           chatRoom.style.display = "none";
           matchButton.style.display = "block";
           matched = false;
-          //}, 10 * 60 * 1000); // 10 minutes
-        }, 1 * 10); // 10 minutes
+        }, 10 * 60 * 1000); // 10 minutes
       }
 
       function startCountdown(duration) {
@@ -426,31 +425,18 @@
             seconds +
             "</div>secs</div></div>";
         }
-        if (duration === 0){
-          alert("Your 10 minutes is up!")
-          chatRoom.style.display = "none";
-          matchButton.style.display = "block";
-        }
+
         updateTimerDisplay(); // Show initial time
 
-        //countdownTimer = setInterval(() => {
-       //  remainingTime -= 1;
-        //  if (remainingTime <= 0) {
-         //   clearInterval(countdownTimer);
-         //   endChat();
-        //  }
-        //  updateTimerDisplay();
-        //}, 10);
-
-        /*function endChat() {
-          appendMessage("Chat ended. You will be disconnected.");
-          chatRoom.style.display = "none";
-          matchButton.style.display = "block";
-          matched = false;
-        }
-        */
+        countdownTimer = setInterval(() => {
+          remainingTime -= 1;
+          if (remainingTime <= 0) {
+            clearInterval(countdownTimer);
+            endChat();
+          }
+          updateTimerDisplay();
+        }, 1000);
       }
-
     </script>
   </body>
 </html>
