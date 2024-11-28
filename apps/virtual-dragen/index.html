@@ -3,15 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Office Pet Virtual Companion</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <div class="container">
       <header>
-        <h1>Office Pet Virtual Companion</h1>
-        <p>Take care of your dragen by completing tasks!</p>
+        <img src="dragencarelogo.gif" alt="Logo" width="300" />
+        <div class="headersubtitle" id="pet-name-header">TRAIN YOUR DRAGEN BY COMPLETING TASKS!</div>
       </header>
+
       <div class="pet-container">
         <img id="pet" src="mir1.webp" alt="Virtual Pet" />
         <div id="petstage">Incubating your dragen egg...</div>
@@ -22,8 +22,8 @@
 
       <div class="tasks">
         <button onclick="addProgress(8.33)">Quick Stretch</button>
-        <button onclick="addProgress(10)">Complete Documentation</button>
-        <button onclick="addProgress(8.33)">Planned your day</button>
+        <button onclick="addProgress(10)">Take a Mindful Break</button>
+        <button onclick="addProgress(6)">Take a Toilet Break</button>
         <button onclick="addProgress(4.17)">Hydrate</button>
       </div>
     </div>
