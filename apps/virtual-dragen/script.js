@@ -22,10 +22,8 @@ window.onload = async () => {
     // Save pet name locally and in Firebase
     localStorage.setItem("petName", currentPetName);
     alert(`Your pet "${currentPetName}" has been created!`);
-  } else {
-    alert(`Welcome back, ${currentPetName} is waiting for you!`);
   }
-// Update the header with the pet's name
+  // Update the header with the pet's name
   const petNameHeader = document.getElementById("pet-name-header");
   if (petNameHeader) {
     petNameHeader.textContent = `TRAIN ${currentPetName} BY COMPLETING TASKS!`;
@@ -85,50 +83,58 @@ function updatepet(stage) {
   ];
 
   // Special case for stage 1 transition with two images
-  pet.src = stages[stage-1];
+  pet.src = stages[stage - 1];
   if (stage === 1) {
-    petElement.innerHTML = '<div id="petstage">Oh? Something is happening..</div>';
+    petElement.innerHTML =
+      '<div id="petstage">Oh? Something is happening..</div>';
     pet.src = transitions[stage][0];
 
     // Wait for 1 second, then show the second transition image
     setTimeout(() => {
-        pet.src = transitions[stage][1];
-        petElement.innerHTML = '<div id="petstage">Wow, look at that!</div>';
+      pet.src = transitions[stage][1];
+      petElement.innerHTML = '<div id="petstage">Wow, look at that!</div>';
     }, 2500); // 1-second delay for the first image
     setTimeout(() => {
       pet.src = stages[stage];
-      petElement.innerHTML = '<div id="petstage">Congrats! Your dragen egg hatched into a baby! uwu </div>';
+      petElement.innerHTML =
+        '<div id="petstage">Congrats! Your dragen egg hatched into a baby! uwu </div>';
       isTransitioning = false;
-    }, 4500); 
+    }, 4500);
   }
-    // Default behavior for other stages
+  // Default behavior for other stages
   if (stage === 2) {
-    petElement.innerHTML = '<div id="petstage">Hm.. something is happening?</div>';
+    petElement.innerHTML =
+      '<div id="petstage">Hm.. something is happening?</div>';
     pet.src = transitions[stage];
 
     setTimeout(() => {
       pet.src = stages[stage];
-      petElement.innerHTML = '<div id="petstage">Your dragen grew! Continue doing tasks to grow your dragen even more!</div>';
+      petElement.innerHTML =
+        '<div id="petstage">Your dragen grew! Continue doing tasks to grow your dragen even more!</div>';
       isTransitioning = false;
-    }, 2500); 
+    }, 2500);
   }
   if (stage === 3) {
-    petElement.innerHTML = '<div id="petstage">Hm? Something is happening again?</div>';
+    petElement.innerHTML =
+      '<div id="petstage">Hm? Something is happening again?</div>';
     pet.src = transitions[stage];
 
     setTimeout(() => {
       pet.src = stages[stage];
-      petElement.innerHTML = '<div id="petstage">Keep it up! Your dragen is adulting with you :)</div>';
+      petElement.innerHTML =
+        '<div id="petstage">Keep it up! Your dragen is adulting with you :)</div>';
       isTransitioning = false;
     }, 2500);
   }
   if (stage === 4) {
-    petElement.innerHTML = '<div id="petstage">Something is happening AGAIN!</div>';
+    petElement.innerHTML =
+      '<div id="petstage">Something is happening AGAIN!</div>';
     pet.src = transitions[stage];
 
     setTimeout(() => {
       pet.src = stages[stage];
-      petElement.innerHTML = '<div id="petstage">Congrats! Your dragen is all grown up now!</div>';
+      petElement.innerHTML =
+        '<div id="petstage">Congrats! Your dragen is all grown up now!</div>';
       isTransitioning = false;
     }, 2500);
   }

@@ -1,5 +1,5 @@
-@import url('https://fonts.cdnfonts.com/css/optiballoonextrabold');
-                
+@import url("https://fonts.cdnfonts.com/css/optiballoonextrabold");
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -7,7 +7,7 @@
 }
 
 body {
-  font-family: 'Genty Demo', sans-serif;
+  font-family: "Genty Demo", sans-serif;
   background-color: #ffd99b;
   display: flex;
   justify-content: center;
@@ -16,10 +16,11 @@ body {
 }
 
 .headersubtitle {
-  font-family: 'OPTIBalloonExtraBold', sans-serif;
+  font-family: "OPTIBalloonExtraBold", sans-serif;
   align-items: center;
   color: #ff914d;
   font-size: 18px;
+  text-transform: uppercase;
 }
 
 .petstage {
@@ -27,7 +28,7 @@ body {
 }
 
 .container {
-   text-align: center;
+  text-align: center;
   max-width: 800px;
   padding: 20px;
   background: #ffffff;
@@ -42,7 +43,7 @@ h1 {
 }
 
 .pet-container {
-  font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: medium;
   font-weight: bold;
   margin: 20px 0;
@@ -79,7 +80,7 @@ h1 {
 .tasks button {
   padding: 10px 20px;
   font-size: 14px;
-  font-family: 'Segoe Print', Consolas, 'Courier New', monospace;
+  font-family: "Segoe Print", Consolas, "Courier New", monospace;
   font-weight: bold;
   color: #000000;
   background-color: #fcc75d;
