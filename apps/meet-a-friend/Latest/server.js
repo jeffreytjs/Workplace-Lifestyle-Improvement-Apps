@@ -19,7 +19,8 @@ server.on("connection", (ws) => {
   console.log("New connection, total users:", users.length);
 
   broadcast({ type: "updateOnlineCount", count: users.length });
-
+  broadcast({ type: "updateWaitingCount", count: getWaitingUsers().length });
+  
   ws.on("message", (message) => {
     const data = JSON.parse(message);
 
@@ -40,15 +41,19 @@ server.on("connection", (ws) => {
     matches.delete(ws);
     console.log("User disconnected, total users:", users.length);
     broadcast({ type: "updateOnlineCount", count: users.length });
+    broadcast({ type: "updateWaitingCount", count: getWaitingUsers().length });
   });
 });
 
 function broadcast(message) {
-  users.forEach((user) => user.send(JSON.stringify(message)));
+  users.forEach((user) => {
+    if (user.readyState === WebSocket.OPEN) {
+        user.send(JSON.stringify(message));
+    }});
 }
 
 function matchUser(ws) {
-  const availableUsers = users.filter(
+  const availableUsers = getWaitingUsers().filter(
     (user) => user !== ws && !matches.has(user)
   );
   if (availableUsers.length > 0) {
@@ -59,7 +64,12 @@ function matchUser(ws) {
 
     ws.send(JSON.stringify({ type: "match" }));
     randomUser.send(JSON.stringify({ type: "match" }));
+    broadcast({ type: "updateWaitingCount", count: getWaitingUsers().length });
   }
+}
+
+function getWaitingUsers() {
+  return users.filter(user => !matches.has(user));
 }
 
 // Start the servers
