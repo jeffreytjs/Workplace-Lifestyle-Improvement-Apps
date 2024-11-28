@@ -153,6 +153,8 @@ function showQuestion(question) {
   questionDiv.appendChild(title);
 
   if (question.options) {
+    const optionsDiv = document.createElement("div");
+    optionsDiv.className = "option-main-container";
     question.options.forEach((option) => {
       const buttonDiv = document.createElement("div");
       buttonDiv.className = "option-container";
@@ -176,6 +178,7 @@ function showQuestion(question) {
 
       buttonDiv.appendChild(button);
       questionDiv.appendChild(buttonDiv);
+      optionsDiv.appendChild(questionDiv);
     });
   } else if (question.input) {
     const input = document.createElement("input");
@@ -262,16 +265,23 @@ function goBack() {
 // Show result
 function showResult() {
   const places = {
-    "<2": ["Place A (nearby)", "Place B (within 2 km)", "Place C (short walk)"],
+    "<2": [
+      "Mee Hoon Kueh (Harvest)",
+      "Thai (Micron)",
+      "$5 Western (HZB Canteen)",
+      "Min Jiang Kueh (HZB Canteen)",
+      "Korean @ Food Canopy (RP)",
+    ],
     "2-5": [
-      "Place D (moderate distance)",
-      "Place E (within 5 km)",
-      "Place F (bike ride)",
+      "Haidilao Hot Pot (Sun Plaza)",
+      "Kway Chap (Marsiling mall)",
+      "Zhang Liang Mala Tang (Causeway Point)",
     ],
     ">5": [
-      "Place G (long drive)",
-      "Place H (outskirts)",
-      "Place I (explore further)",
+      "Yew Kee Duck Rice (Bukit Canberra Hawker Centre)",
+      "Jinjja Chicken (Northpoint)",
+      "Papa Ayam (Northpoint)",
+      "Sembawang Traditional Claypot Rice",
     ],
   };
   document.getElementById("question-container").classList.add("hidden");
@@ -311,6 +321,13 @@ function restart() {
   questionHistory = [];
   document.getElementById("result-container").classList.add("hidden");
   document.getElementById("welcome-container").classList.remove("hidden");
+}
+
+// Suggest more activities
+function moreActivities() {
+  showQuestion(questions[7]);
+  document.getElementById("result-container").classList.add("hidden");
+  document.getElementById("question-container").classList.remove("hidden");
 }
 
 // Start button event listener
