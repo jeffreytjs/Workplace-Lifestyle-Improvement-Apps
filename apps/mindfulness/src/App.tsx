@@ -5,14 +5,13 @@ import rainVideo from './assets/rain.webm';
 import backgroundVideo from "./assets/background.mp4";
 import logo from "./assets/logo.gif";
 import { Timer } from './Timer';
-import ReleaseWorries from './ReleaseWorries';
 
 function App() {
   const [video, setVideo] = useState("");
   const [backgroundClass, setBackgroundClass] = useState("background");
   const [isTimerRunning, setTimerRunning] = useState(false);
   const [timerDuration, setTimerDuration] = useState(10);
-  const [releaseWorries, setReleaseWorries] = useState(false);
+  const [showMindfulQuotes, setShowMindfulQuotes] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
 
@@ -69,12 +68,12 @@ function App() {
                     </select>
                 </div>
                 <div className="flex-row" style={{marginTop: "10px", marginBottom: "10px"}}>
-                    Release Your Worries?
+                    Show Mindful Quotes
                     <input 
                       className="checkbox"
                       type="checkbox"
-                      checked={releaseWorries}
-                      onChange={() => setReleaseWorries(!releaseWorries)}
+                      checked={showMindfulQuotes}
+                      onChange={() => setShowMindfulQuotes(!showMindfulQuotes)}
                     />
                 </div>
             </div>
@@ -84,7 +83,6 @@ function App() {
         </>
         )
       }
-      {(isTimerRunning && releaseWorries) && <ReleaseWorries />}
     </>
   )
 }
