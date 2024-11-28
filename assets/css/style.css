@@ -301,12 +301,12 @@ h6 {
 
 .recent-work {
   width: 100%;
-  padding-bottom: 27%;
+  padding-bottom: 15%;
+  padding-top: 18%;
   background: #c3c9cc;
   display: table;
   text-align: center;
   vertical-align: middle;
-  padding-top: 27%;
   background-size: 100%;
   background-repeat: no-repeat;
   background-position: center;
@@ -315,13 +315,12 @@ h6 {
 }
 
 .recent-work span {
-  margin-top: -18px;
   opacity: 1;
   position: relative;
   z-index: 1;
 }
 .recent-work:before {
-  background: rgba(2, 56, 58, 0.7);
+  background: rgba(#ffd99b, 0.7);
   height: 100%;
   width: 100%;
   position: absolute;
@@ -336,7 +335,7 @@ h6 {
   transition: all 0.2s;
 }
 .recent-work:hover {
-  background-size: 120%;
+  background-size: 110%;
   background-position: center;
 }
 .recent-work:hover:before,
