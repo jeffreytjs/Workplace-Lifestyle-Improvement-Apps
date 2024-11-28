@@ -19,6 +19,7 @@ server.on("connection", (ws) => {
   console.log("New connection, total users:", users.length);
 
   broadcast({ type: "updateOnlineCount", count: users.length });
+  broadcast({ type: "updateWaitingCount", count: users.length });
 
   ws.on("message", (message) => {
     const data = JSON.parse(message);
@@ -40,6 +41,7 @@ server.on("connection", (ws) => {
     matches.delete(ws);
     console.log("User disconnected, total users:", users.length);
     broadcast({ type: "updateOnlineCount", count: users.length });
+    broadcast({ type: "updateWaitingsCount", count: users.length });
   });
 });
 
@@ -59,6 +61,7 @@ function matchUser(ws) {
 
     ws.send(JSON.stringify({ type: "match" }));
     randomUser.send(JSON.stringify({ type: "match" }));
+    broadcast({ type: "updateWaitingCount", count: users.length - 2 });
   }
 }
 
