@@ -50,6 +50,7 @@ export default tseslint.config({
 ```
 
 ## Video Sources:
-- Menu Background: https://www.vecteezy.com/video/2014656-organic-particles-mesh-flowing-on-purple-infinite-background
+- Default Background: https://www.vecteezy.com/video/2014656-organic-particles-mesh-flowing-on-purple-infinite-background
+- Default Ambient Music: https://pixabay.com/music/pulses-universe-116572/
 - Forest: https://www.youtube.com/watch?v=pj3iV9OjCgM
 - Rain: https://www.youtube.com/watch?v=dR_3g5WCdHs

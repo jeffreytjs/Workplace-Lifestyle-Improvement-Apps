@@ -3,8 +3,10 @@ import './App.css'
 import forestVideo from './assets/forest.webm';
 import rainVideo from './assets/rain.webm';
 import backgroundVideo from "./assets/background.mp4";
+import universe from "./assets/universe.mp3";
 import logo from "./assets/logo.gif";
 import { Timer } from './Timer';
+import MindfulnessQuotes from './MindfulnessQuotes';
 
 function App() {
   const [video, setVideo] = useState("");
@@ -14,14 +16,18 @@ function App() {
   const [showMindfulQuotes, setShowMindfulQuotes] = useState(false);
 
   const videoRef = useRef<HTMLVideoElement>(null);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const backToMenu = () => {
     setTimerRunning(false);
     setBackgroundClass("background background-fade-in");
-    videoRef.current?.pause();
     if (videoRef.current) {
       videoRef.current.pause();
       videoRef.current.currentTime = 0;
+    }
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current.currentTime = 0;
     }
   }
 
@@ -32,17 +38,21 @@ function App() {
     }
   }
 
+  console.log(audioRef.current?.currentTime);
+
   return (
     <>
       <video className={backgroundClass} src={backgroundVideo} autoPlay muted loop />
       <video className="mindfulness-video" src={video} ref={videoRef} loop />
+      <audio src={universe} ref={audioRef} loop />
       {isTimerRunning ? <Timer
           backToMenu={backToMenu}
           timerDuration={timerDuration}
           videoRef={videoRef}
+          audioRef={video === "" ? audioRef : undefined}
         /> : (
         <>
-          <img src={logo} width="70%" style={{marginTop: "50px"}}/>
+          <img src={logo} width="70%" style={{minWidth: "350px", marginTop: "50px"}}/>
           <div className="main-page">
             <div style={{fontSize: "1.5em"}}>
                 <div className="flex-row">
@@ -61,14 +71,14 @@ function App() {
                 </div>
                 <div className="flex-row" style={{marginTop: "10px"}}>
                     Theme:
-                    <select onChange={(event) => setVideo(event.target.value)} className="input-select">
-                        <option value="">None</option>
-                        <option value={forestVideo}>Forest</option>
-                        <option value={rainVideo}>Rain</option>
+                    <select onChange={(event) => setVideo(event.target.value)} className="input-select" value={video}>
+                        <option style={{color: "white"}} value="">Default</option>
+                        <option style={{color: "black"}} value={forestVideo}>Forest</option>
+                        <option style={{color: "black"}} value={rainVideo}>Rain</option>
                     </select>
                 </div>
                 <div className="flex-row" style={{marginTop: "10px", marginBottom: "10px"}}>
-                    Show Mindful Quotes
+                    Show Mindfulness Quotes
                     <input 
                       className="checkbox"
                       type="checkbox"
@@ -83,6 +93,7 @@ function App() {
         </>
         )
       }
+      {(isTimerRunning && showMindfulQuotes) && <MindfulnessQuotes />}
     </>
   )
 }
