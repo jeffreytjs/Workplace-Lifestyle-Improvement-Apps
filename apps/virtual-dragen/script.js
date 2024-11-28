@@ -24,9 +24,19 @@ window.onload = async () => {
     alert(`Your pet "${currentPetName}" has been created!`);
   }
   // Update the header with the pet's name
+  const greetings = [
+    "IS HYPED UP AND READY TO COMPLETE TASKS!! ",
+    "IS WAVING AT YOU, WAVE BACK?",
+    "IS EXCITED TO SEE YOU!",
+    "THINKS THAT YOU DESERVE BBT TODAY",
+    "FLIES OVER AND GIVES YOU A HUG",
+    "IS SIPPING WATER AND THINKS YOU SHOULD TOO",
+  ];
   const petNameHeader = document.getElementById("pet-name-header");
   if (petNameHeader) {
-    petNameHeader.textContent = `TRAIN ${currentPetName} BY COMPLETING TASKS!`;
+    let randomGreeting =
+      greetings[Math.floor(Math.random() * greetings.length)];
+    petNameHeader.textContent = `${currentPetName} ${randomGreeting}`;
   }
 };
 
