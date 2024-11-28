@@ -1,46 +1,16 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Mindfulness & Focus Timer</title>
-  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
-  <div class="container">
-    <h1>Mindfulness & Focus Timer</h1>
-    <div class="timer-settings">
-      <label for="timer-duration">Set Timer (minutes):</label>
-      <input type="number" id="timer-duration" min="1" max="120" value="25">
-      <button id="start-timer">Start</button>
-      <button id="pause-timer">Pause</button>
-      <button id="stop-timer">Stop</button>
-    </div>
-
-    <div class="timer-display">
-      <h2 id="time-remaining">25:00</h2>
-    </div>
-
-    <div class="sound-options">
-      <label for="background-sound">Background Sound:</label>
-      <select id="background-sound">
-        <option value="none">None</option>
-        <option value="nature">Nature Sounds</option>
-        <option value="rain">Rain</option>
-      </select>
-      <audio id="audio" loop></audio>
-    </div>
-
-    <div id="wellness-tip"></div>
-
-    <div class="extras">
-      <a href="https://open.spotify.com" target="_blank" class="spotify-link">Open Spotify Playlist</a>
-    </div>
-  </div>
-
-  <script src="script.js"></script>
+  <div id="root"></div>
+  <script type="module" src="/src/main.tsx"></script>
 </body>
 
 </html>
