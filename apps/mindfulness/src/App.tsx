@@ -1,7 +1,7 @@
-import { useRef, useState } from 'react';
-import './App.css'
-import forestVideo from './assets/forest.webm';
-import rainVideo from './assets/rain.webm';
+import { useRef, useState } from "react";
+import "./App.css";
+import forestVideo from "./assets/forest.webm";
+import rainVideo from "./assets/rain.webm";
 import backgroundVideo from "./assets/background.mp4";
 import universe from "./assets/universe.mp3";
 import logo from "./assets/logo.gif";
@@ -36,13 +36,19 @@ function App() {
     if (video !== "") {
       setBackgroundClass("background background-fade-out");
     }
-  }
+  };
 
   console.log(audioRef.current?.currentTime);
 
   return (
     <>
-      <video className={backgroundClass} src={backgroundVideo} autoPlay muted loop />
+      <video
+        className={backgroundClass}
+        src={backgroundVideo}
+        autoPlay
+        muted
+        loop
+      />
       <video className="mindfulness-video" src={video} ref={videoRef} loop />
       <audio src={universe} ref={audioRef} loop />
       {isTimerRunning ? <Timer
@@ -87,7 +93,6 @@ function App() {
                     />
                 </div>
             </div>
-
             <button onClick={start}>Start</button>
           </div>
         </>
@@ -95,7 +100,7 @@ function App() {
       }
       {(isTimerRunning && showMindfulQuotes) && <MindfulnessQuotes />}
     </>
-  )
+  );
 }
 
-export default App
+export default App;

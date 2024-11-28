@@ -115,3 +115,22 @@
     setHeaderBackground();
   });
 })();
+
+// Select the link element
+const link = document.getElementById("link-prompt");
+
+// Add a click event listener to the link
+link.addEventListener("click", function (event) {
+  // Prevent default navigation action
+  event.preventDefault();
+
+  // Display confirmation dialog
+  const userConfirmation = confirm(
+    "It may not work if you are outside Illumina network or on a mobile device. Continue?"
+  );
+
+  // Redirect to the link's URL if the user confirms
+  if (userConfirmation) {
+    window.location.href = this.href;
+  }
+});
