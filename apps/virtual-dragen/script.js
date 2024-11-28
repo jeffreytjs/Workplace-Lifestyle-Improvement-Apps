@@ -114,7 +114,7 @@ function updatepet(stage) {
     }
     if (stage === 4) {
       petElement.innerHTML =
-        '<div id="petstage">Congrats! Your dragen is enjoying retirement now!</div>';
+        '<div id="petstage">Congrats! Your dragen is all grown up now!</div>';
     }
   }, 1500); // 1.5-second delay for transition
 }
