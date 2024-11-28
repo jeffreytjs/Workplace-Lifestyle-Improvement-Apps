@@ -133,6 +133,154 @@ const questions = [
       },
     ],
   },
+  {
+    id: "step-9",
+    question: "Fun activities to do during lunch!",
+    options: [
+        { text: "Ingredient Challenge", next: "step-10", value: "Ingredient" },
+        { text: "Surprise your buds!", next: "step-15", value: "Surprise" },
+        { text: "Colour Day", next: "step-16", value: "Colour" },
+        { text: "Would you rather?", next: "step-17", value: "Would" },
+      ],
+  },
+  {
+    id: "step-10",
+    question: "Pick an ingredient and everyone incorporates it into their lunch!",
+      options: [
+        {
+          text: "Eggs", next: "step-11", value: "eggs"
+        },
+        {
+            text: "Kimchi", next: "step-12", value: "kimchi"
+        },
+        {
+            text: "Eggplant", next: "step-13", value: "eggplant"
+        },
+        {
+            text: "Chicken", next: "step-14", value: "chicken"
+        },
+    ],
+  },
+  {
+    id: "step-11",
+    question: "You have selected eggs! ",
+    options:[
+        {
+            text: "Fun fact: Chickens can lay eggs of different colours (white, brown, blue and even green) depending on their breed, but the nutritional value remains the same.", 
+            next: "final", 
+        },
+    ]
+  },
+  {
+    id: "step-12",
+    question: "You have selected kimchi! ",
+    options:[
+        {
+            text: "Fun fact: Traditionally, kimchi was fermented underground in large earthern pots called ongi to keep it fresh through Korean winters.", 
+            next: "final", 
+        },
+    ]
+  },
+  {
+    id: "step-13",
+    question: "You have selected eggplant! ",
+    options:[
+        {
+            text: "Did you know that eggplants are called Crazy apples in Italy because people believe eating too many can make you insane?", 
+            next: "final", 
+        },
+    ]
+  },
+  {
+    id: "step-14",
+    question: "You have selected chicken! ",
+    options:[
+        {
+            text: "Chickens are the closest living relatives to the T-rex.", 
+            next: "final", 
+        },
+    ]
+  },
+  {
+    id: "step-15",
+    question: "Trade lunch with your work bud, there are more benefits than you'd expect!",
+      options: [
+        {
+            text: "Opportunity to try out new food",
+            next: "final",
+        },
+        {
+          text: "Fosters a sense of community and connection",
+          next: "final"
+        },
+        {
+            text: "Stimulates creativity",
+            next: "final",
+        },
+       
+    ],
+  },
+  {
+    id: "step-16",
+    question: "Choose a colour and everyone's lunch should match it!",
+      options: [
+        {
+          text: "Red",
+          next: "final",
+        },
+        {
+            text: "Orange",
+            next: "final",
+        },
+        {
+            text: "Green",
+            next: "final",
+        },
+        {
+            text: "Brown",
+            next: "final",
+        },
+        {
+            text: "Purple",
+            next: "final",
+        },
+    ],
+  },
+  {
+    id: "step-17",
+    question: "A series of fun, difficult and quirky decisions!",
+      options: [
+        {
+          text: "Would you rather be the funniest or smartest person in the office ?",
+          next: "final"
+        },
+        {
+            text: "Would you rather accidentally send a typo in a company-wide email or forget to attach an important file?",
+            next: "final",
+        },
+        {
+            text: "Would you rather never eat chocolate again or never drink coffee again?",
+            next: "final",
+        },
+        {
+            text: "Would you rather always have to eat dessert first, or never be able to have dessert again?",
+            next: "final",
+        },
+        {
+            text: "Would you rather have unlimited first-class plane tickets or free stays at any hotel?",
+            next: "final",
+        },
+        {
+            text: "Would you rather have to sing everything you say or dance everywhere you go?",
+            next: "final",
+        },
+        {
+            text: "Would you rather have unlimited energy or need no sleep?",
+            next: "final",
+        },
+    ],
+  },
+  
 ];
 
 // Start the app
@@ -213,6 +361,8 @@ function showQuestion(question) {
   container.appendChild(questionDiv);
 }
 
+
+ 
 // Handle user response
 function handleAnswer(questionId, answer, nextStep) {
   userSelections[questionId] = answer;
@@ -228,11 +378,16 @@ function handleAnswer(questionId, answer, nextStep) {
     showGooglebudget();
   } else if (nextStep == "googlefreezer") {
     showGooglefreezer();
-  } else {
+  } else if (nextStep == "final") {
+    finalpage();
+  }
+    else {
     const nextQuestion = questions.find((q) => q.id === nextStep);
     showQuestion(nextQuestion);
+    }
+  
   }
-}
+
 
 // Show google
 function showGooglesimple() {
@@ -255,6 +410,11 @@ function showGooglefreezer() {
     "https://www.google.com/search?q=freezer+friendly+meal+recipe";
 }
 
+function finalpage() {
+    document.getElementById("question-container").classList.add("hidden");
+    document.getElementById("final-container").classList.remove("hidden");
+    document.getElementById("final-container").classList.add("fullscreen");
+}
 // Navigate to the previous question
 function goBack() {
   const previousQuestionId = questionHistory.pop();
@@ -284,6 +444,8 @@ function showResult() {
       "Sembawang Traditional Claypot Rice",
     ],
   };
+
+  
   document.getElementById("question-container").classList.add("hidden");
   const resultContainer = document.getElementById("result-container");
   resultContainer.classList.remove("hidden");
@@ -321,11 +483,12 @@ function restart() {
   questionHistory = [];
   document.getElementById("result-container").classList.add("hidden");
   document.getElementById("welcome-container").classList.remove("hidden");
+  document.getElementById("final-container").classList.add("hidden");
 }
 
 // Suggest more activities
 function moreActivities() {
-  showQuestion(questions[7]);
+  showQuestion(questions[8]);
   document.getElementById("result-container").classList.add("hidden");
   document.getElementById("question-container").classList.remove("hidden");
 }

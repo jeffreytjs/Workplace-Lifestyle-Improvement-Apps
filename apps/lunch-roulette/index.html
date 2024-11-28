@@ -14,20 +14,13 @@
     <div class="app">
       <!-- Welcome Screen -->
       <div id="welcome-container" class="fullscreen">
-        <header>
-          <img
-            src="images/welcome-illustration.svg"
-            alt="Welcome Illustration"
-            class="illustration"
-          />
-          <h1><i class="fas fa-utensils"></i> Lunch Roulette</h1>
-          <p>Feeling adventurous? Surprise your tastebuds!</p>
+          <img src="lunchbudopening.gif" width="550"/>
           <button class="btn" id="start-button">Start</button>
-        </header>
       </div>
 
       <!-- Question Container -->
       <div id="question-container" class="hidden fullscreen">
+        <img src="lunchbudopening.gif" width="550"/>
         <h2><i class="fas fa-question-circle"></i> Choose Your Preferences</h2>
         <!-- Questions will be dynamically inserted here -->
         <div id="question-content"></div>
@@ -35,29 +28,32 @@
 
       <!-- Result Container -->
       <div id="result-container" class="hidden fullscreen">
-        <img
-          src="images/result-illustration.svg"
-          alt="Result Illustration"
-          class="illustration"
-        />
-        <h2><i class="fas fa-check-circle"></i> Your Lunch Spot:</h2>
+        <img src="lunchbudopening.gif" width="550"/>
+        <h2>Your Lunch Spot:</h2>
         <p id="spot-name" class="highlight-text">Random Lunch Spot</p>
         <h3>Distance:</h3>
         <p id="distance" class="highlight-text">-</p>
         <button class="btn" onclick="restart()">Start Over</button>
-        <br />
         <button class="btn" onclick="moreActivities()">
-          Suggest some activities over lunch
+          Want to keep you and your buds entertained?
         </button>
       </div>
 
       <!-- Suggestions -->
       <div id="suggestion-container" class="hidden fullscreen">
+        <img src="lunchbudopening.gif" width="550"/>
         <h2><i class="fas fa-utensils"></i> Recommendations</h2>
         <div id="recipe-suggestions" class="suggestions-grid"></div>
         <div id="restaurant-suggestions" class="suggestions-grid"></div>
       </div>
+      <!-- Final -->
+    <div id="final-container" class="hidden">
+        <img src="lunchbudclosing.gif" width="550"/>
+        <button class="btn" onclick="restart()">Start Over</button>
     </div>
-    <script src="script.js"></script>
+  
+    </div>
   </body>
+    <script src="script.js"></script>
+  
 </html>
