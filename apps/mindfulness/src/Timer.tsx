@@ -51,9 +51,6 @@ export function Timer({
     // Fade in audio at start
     useEffect(() => {
         resumeTimer();
-        setTimeout(() => {
-            setClassName(className + " disappearing-div")
-        }, 2000)
         if (audioRef?.current) {
             audioRef.current.volume = 0;
             let vol = 0;
