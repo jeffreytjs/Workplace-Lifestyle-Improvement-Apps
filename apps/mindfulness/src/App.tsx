@@ -76,8 +76,6 @@ function App() {
     }
   };
 
-  console.log(audioRef.current?.currentTime);
-
   return (
     <>
       <video
