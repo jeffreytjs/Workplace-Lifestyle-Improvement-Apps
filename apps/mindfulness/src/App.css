@@ -1,3 +1,53 @@
+.circular-progress-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress {
+  transform: rotate(-90deg);
+}
+
+.breathing-animation {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+
+@keyframes breathing {
+  0% { transform: scale(1); }
+  28.57% { transform: scale(1.12); } /* 4s expand */
+  42.86% { transform: scale(1.12); } /* 2s hold */
+  71.43% { transform: scale(1); }   /* 4s shrink */
+  85.71% { transform: scale(1); }   /* 2s hold */
+  100% { transform: scale(1); }
+}
+
+.breathing-animation {
+  animation: breathing 12s ease-in-out infinite;
+}
+
+.pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 18px;
+  pointer-events: none;
+}
 .mindfulness-quotes-container {
   padding: 24px 32px;
   max-width: 600px;

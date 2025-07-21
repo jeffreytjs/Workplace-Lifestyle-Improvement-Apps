@@ -83,16 +83,67 @@ export function Timer({
         }
     }, [timeLeft])
 
+    // Progress bar calculations
+    const percent = timeLeft / (timerDuration * 60);
+    const radius = 60;
+    const stroke = 10;
+    const normalizedRadius = radius - stroke / 2;
+    const circumference = normalizedRadius * 2 * Math.PI;
+    const strokeDashoffset = circumference * (1 - percent);
+
     return (
-    <div className={className} style={{marginTop: "2rem", padding: "0px 20px 20px 20px", background: "none"}}>
-            <h2>{leftpad(Math.floor(timeLeft / 60))}:{leftpad(timeLeft % 60)}</h2>
-        <div style={{marginTop: "-20px"}}>
-            {isPaused
-                ? <button onClick={resumeTimer}>Resume</button>
-                : <button onClick={pauseTimer}>Pause</button>
-            }
-            <button onClick={stopTimer} style={{marginLeft: "20px"}}>Stop</button>
+        <div className={className} style={{ marginTop: "2rem", padding: "0px 20px 20px 20px", background: "none", position: "relative" }}>
+            <div className="circular-progress-container">
+                <svg
+                    height={radius * 2}
+                    width={radius * 2}
+                    className={`circular-progress breathing-animation`}
+                >
+                    <circle
+                        stroke="#e3f2fd"
+                        fill="none"
+                        strokeWidth={stroke}
+                        cx={radius}
+                        cy={radius}
+                        r={normalizedRadius}
+                        style={{ opacity: 0.3 }}
+                    />
+                    <circle
+                        stroke="#1976d2"
+                        fill="none"
+                        strokeWidth={stroke}
+                        cx={radius}
+                        cy={radius}
+                        r={normalizedRadius}
+                        strokeDasharray={circumference}
+                        strokeDashoffset={strokeDashoffset}
+                        style={{ transition: "stroke-dashoffset 1s linear" }}
+                    />
+                    <text
+                        x="50%"
+                        y="54%"
+                        textAnchor="middle"
+                        dominantBaseline="middle"
+                        fontSize="1.5em"
+                        fill="#1976d2"
+                        fontWeight="bold"
+                    >
+                        {leftpad(Math.floor(timeLeft / 60))}:{leftpad(timeLeft % 60)}
+                    </text>
+                </svg>
+            </div>
+            {isPaused && (
+                <div className="pause-overlay">
+                    Paused – Take a breath
+                </div>
+            )}
+            <div style={{ marginTop: "-10px" }}>
+                {isPaused
+                    ? <button onClick={resumeTimer}>Resume</button>
+                    : <button onClick={pauseTimer}>Pause</button>
+                }
+                <button onClick={stopTimer} style={{ marginLeft: "20px" }}>Stop</button>
+            </div>
         </div>
-    </div>
     );
 }
