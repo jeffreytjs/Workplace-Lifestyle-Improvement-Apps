@@ -73,22 +73,11 @@ export default function MindfulnessQuotes() {
     }, [quoteIndex]);
 
     return (
-        <div className={additionalClass} style={{
-            padding: "24px 32px",
-            maxWidth: "600px",
-            marginTop: "80px",
-            marginLeft: "auto",
-            marginRight: "auto",
-            borderRadius: "18px",
-            boxShadow: "0 4px 24px rgba(0,0,0,0.08)",
-            background: "none",
-            textAlign: "center",
-            transition: "all 0.4s"
-        }}>
-            <div style={{ fontSize: "1.35em", fontWeight: 500, marginBottom: "16px", lineHeight: 1.4 }}>
+        <div className={`mindfulness-quotes-container ${additionalClass}`}>
+            <div className="mindfulness-quote-text">
                 {text[0]}
             </div>
-            <div style={{ fontSize: "1.1em", color: "#555", fontStyle: "italic", marginBottom: "18px" }}>
+            <div className="mindfulness-quote-author">
                 {text[1]}
             </div>
             <button onClick={nextQuote} style={{
