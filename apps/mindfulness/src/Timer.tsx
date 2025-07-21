@@ -17,7 +17,7 @@ export function Timer({
 }) {
     const [isPaused, setPaused] = useState(false);
     const [timeLeft, setTimeLeft] = useState(timerDuration * 60);
-    const [className, setClassName] = useState("white-div");
+    const [className, setClassName] = useState("");
     const timer = useRef<number>();
 
     const stopTimer = () => {
@@ -84,7 +84,7 @@ export function Timer({
     }, [timeLeft])
 
     return (
-    <div className={className} style={{marginTop: "2rem", padding: "0px 20px 20px 20px"}}>
+    <div className={className} style={{marginTop: "2rem", padding: "0px 20px 20px 20px", background: "none"}}>
             <h2>{leftpad(Math.floor(timeLeft / 60))}:{leftpad(timeLeft % 60)}</h2>
         <div style={{marginTop: "-20px"}}>
             {isPaused
