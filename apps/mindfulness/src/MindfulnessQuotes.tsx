@@ -48,30 +48,51 @@ const QUOTES = [
 
 export default function MindfulnessQuotes() {
     const [text, setText] = useState(["", ""]);
-    const [additionalClass, setAdditionalClass] = useState("invisible");
+    const [additionalClass, setAdditionalClass] = useState("quote-fade-in");
+    const [quoteIndex, setQuoteIndex] = useState<number>(Math.floor(Math.random() * QUOTES.length));
 
-    const hideText = () => {
+    // Show next quote (manual)
+    const nextQuote = () => {
         setAdditionalClass("quote-fade-out");
-        setTimeout(showText, 10000);
-    }
+        setTimeout(() => {
+            const nextIdx = (quoteIndex + 1) % QUOTES.length;
+            setQuoteIndex(nextIdx);
+            setText(QUOTES[nextIdx]);
+            setAdditionalClass("quote-fade-in");
+        }, 400);
+    };
 
-    const showText = () => {
-        const texts = QUOTES[Math.floor(QUOTES.length * Math.random())];
-        setText(texts);
-        setAdditionalClass("quote-fade-in");
-        setTimeout(hideText, 12000);
-    }
-
+    // Show quote on mount and rotate every 12s
     useEffect(() => {
-        const showTextInterval = setTimeout(showText, 10000);
-        return () => clearInterval(showTextInterval);
-    }, [])
+        setText(QUOTES[quoteIndex]);
+        setAdditionalClass("quote-fade-in");
+        const interval = setInterval(() => {
+            nextQuote();
+        }, 12000);
+        return () => clearInterval(interval);
+    }, [quoteIndex]);
 
     return (
-        <div className={`white-div ${additionalClass}`} style={{padding: "10px", maxWidth: "500px", marginTop: "100px"}} >
-            {text[0]}
-            <br />
-            <i>{text[1]}</i>
+        <div className={`mindfulness-quotes-container ${additionalClass}`}>
+            <div className="mindfulness-quote-text">
+                {text[0]}
+            </div>
+            <div className="mindfulness-quote-author">
+                {text[1]}
+            </div>
+            <button onClick={nextQuote} style={{
+                padding: "6px 18px",
+                borderRadius: "8px",
+                border: "none",
+                background: "#e3f2fd",
+                color: "#1976d2",
+                fontWeight: 600,
+                fontSize: "1em",
+                cursor: "pointer",
+                boxShadow: "0 2px 8px rgba(25, 118, 210, 0.08)"
+            }}>
+                Next Quote
+            </button>
         </div>
-    )
+    );
 }

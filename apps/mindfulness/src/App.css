@@ -1,3 +1,99 @@
+.circular-progress-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  margin: 0 auto 24px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.circular-progress {
+  transform: rotate(-90deg);
+}
+
+.breathing-animation {
+  animation: breathing 4s ease-in-out infinite;
+}
+
+
+@keyframes breathing {
+  0% { transform: scale(1); }
+  28.57% { transform: scale(1.12); } /* 4s expand */
+  42.86% { transform: scale(1.12); } /* 2s hold */
+  71.43% { transform: scale(1); }   /* 4s shrink */
+  85.71% { transform: scale(1); }   /* 2s hold */
+  100% { transform: scale(1); }
+}
+
+.breathing-animation {
+  animation: breathing 12s ease-in-out infinite;
+}
+
+.pause-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  color: #fff;
+  font-size: 1.5em;
+  font-weight: 600;
+  letter-spacing: 1px;
+  border-radius: 18px;
+  pointer-events: none;
+}
+.mindfulness-quotes-container {
+  padding: 24px 32px;
+  max-width: 600px;
+  margin-top: 80px;
+  margin-left: auto;
+  margin-right: auto;
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  background: none;
+  text-align: center;
+  transition: opacity 0.4s, transform 0.4s;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mindfulness-quote-text {
+  font-size: 1.35em;
+  font-weight: 500;
+  margin-bottom: 16px;
+  line-height: 1.4;
+  transition: color 0.4s, font-size 0.4s;
+}
+
+.mindfulness-quote-author {
+  font-size: 1.1em;
+  color: #555;
+  font-style: italic;
+  margin-bottom: 18px;
+  transition: color 0.4s, font-size 0.4s;
+}
+
+@media (max-width: 600px) {
+  .mindfulness-quotes-container {
+    padding: 12px 8px;
+    max-width: 98vw;
+    margin-top: 32px;
+    border-radius: 12px;
+  }
+  .mindfulness-quote-text {
+    font-size: 1.1em;
+  }
+  .mindfulness-quote-author {
+    font-size: 0.95em;
+  }
+}
 #root {
   max-width: 1280px;
   margin: 0 auto;
