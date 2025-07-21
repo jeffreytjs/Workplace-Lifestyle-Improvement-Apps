@@ -150,9 +150,6 @@ export function Timer({
                     </text>
                 </svg>
             </div>
-            <div style={{ textAlign: "center", fontSize: "1.4em", fontWeight: 500, marginBottom: "18px", marginTop: "2px", color: "#1976d2" }}>
-                {breathPhase}
-            </div>
             {isPaused && (
                 <div className="pause-overlay">
                     Paused – Take a breath
