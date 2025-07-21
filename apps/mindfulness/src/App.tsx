@@ -64,6 +64,16 @@ function App() {
     if (selectedTheme && selectedTheme.video) {
       setBackgroundClass("background background-fade-out");
     }
+    // Fade in audio when timer starts
+    if (audioRef.current) {
+      audioRef.current.volume = 0;
+      let vol = 0;
+      const fadeIn = setInterval(() => {
+        vol += 0.05;
+        if (audioRef.current) audioRef.current.volume = Math.min(vol, 1);
+        if (vol >= 1) clearInterval(fadeIn);
+      }, 100);
+    }
   };
 
   console.log(audioRef.current?.currentTime);

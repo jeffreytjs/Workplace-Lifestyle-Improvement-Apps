@@ -48,16 +48,39 @@ export function Timer({
         audioRef?.current?.play();
     }
 
+    // Fade in audio at start
     useEffect(() => {
         resumeTimer();
         setTimeout(() => {
             setClassName(className + " disappearing-div")
         }, 2000)
+        if (audioRef?.current) {
+            audioRef.current.volume = 0;
+            let vol = 0;
+            const fadeIn = setInterval(() => {
+                vol += 0.05;
+                if (audioRef.current) {
+                    audioRef.current.volume = Math.min(vol, 1);
+                }
+                if (vol >= 1) clearInterval(fadeIn);
+            }, 100);
+        }
     }, []);
 
+    // Fade out audio in last 5 seconds
     useEffect(() => {
         clearInterval(timer.current);
         timer.current = setTimeout(updateTimer, 1000);
+        if (audioRef?.current && timeLeft <= 5 && timeLeft > 0) {
+            let vol = audioRef.current.volume;
+            const fadeOut = setInterval(() => {
+                vol -= 0.2;
+                if (audioRef.current) {
+                    audioRef.current.volume = Math.max(vol, 0);
+                }
+                if (vol <= 0 || timeLeft === 0) clearInterval(fadeOut);
+            }, 200);
+        }
     }, [timeLeft])
 
     return (
