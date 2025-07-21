@@ -9,7 +9,14 @@ import { Timer } from "./Timer";
 import MindfulnessQuotes from "./MindfulnessQuotes";
 
 function App() {
-  const [video, setVideo] = useState("");
+  const [theme, setTheme] = useState<string>("default");
+  // Theme options
+  const themeOptions = [
+    { label: "Default", value: "default", video: "", sound: universe },
+    { label: "Forest", value: "forest", video: forestVideo, sound: forestVideo },
+    { label: "Rain", value: "rain", video: rainVideo, sound: rainVideo },
+    { label: "White Noise", value: "white", video: "", sound: universe }
+  ];
   const [backgroundClass, setBackgroundClass] = useState("background");
   const [isTimerRunning, setTimerRunning] = useState(false);
   const [timerDuration, setTimerDuration] = useState(10);
@@ -53,7 +60,8 @@ function App() {
 
   const start = () => {
     setTimerRunning(true);
-    if (video !== "") {
+    const selectedTheme = themeOptions.find(t => t.value === theme);
+    if (selectedTheme && selectedTheme.video) {
       setBackgroundClass("background background-fade-out");
     }
   };
@@ -69,14 +77,14 @@ function App() {
         muted
         loop
       />
-      <video className="mindfulness-video" src={video} ref={videoRef} loop />
-      <audio src={universe} ref={audioRef} loop />
+      <video className="mindfulness-video" src={themeOptions.find(t => t.value === theme)?.video || ""} ref={videoRef} loop />
+      <audio src={themeOptions.find(t => t.value === theme)?.sound || universe} ref={audioRef} loop />
       {isTimerRunning ? (
         <Timer
           backToMenu={backToMenu}
           timerDuration={timerDuration}
           videoRef={videoRef}
-          audioRef={video === "" ? audioRef : undefined}
+          audioRef={themeOptions.find(t => t.value === theme)?.video ? undefined : audioRef}
         />
       ) : (
         <>
@@ -126,22 +134,21 @@ function App() {
                 </div>
               </div>
               <div className="flex-row" style={{ marginTop: "10px" }}>
-                Theme:
-                <select
-                  onChange={(event) => setVideo(event.target.value)}
-                  className="input-select"
-                  value={video}
-                >
-                  <option style={{ color: "black" }} value="">
-                    Default
-                  </option>
-                  <option style={{ color: "black" }} value={forestVideo}>
-                    Forest
-                  </option>
-                  <option style={{ color: "black" }} value={rainVideo}>
-                    Rain
-                  </option>
-                </select>
+                <div style={{ display: "flex", flexDirection: "column", width: "100%" }}>
+                  <label style={{ fontWeight: "bold", marginBottom: "4px" }}>Theme:</label>
+                  <select
+                    onChange={(event) => setTheme(event.target.value)}
+                    className="input-select"
+                    value={theme}
+                    style={{ textAlign: "center" }}
+                  >
+                    {themeOptions.map(opt => (
+                      <option key={opt.value} style={{ color: "black", textAlign: "center" }} value={opt.value}>
+                        {opt.label}
+                      </option>
+                    ))}
+                  </select>
+                </div>
               </div>
               <div
                 className="flex-row"
